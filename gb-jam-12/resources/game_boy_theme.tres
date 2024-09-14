@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ba6n5ejl88kg1"]
+
+[ext_resource type="FontFile" uid="uid://ckr318ob784wr" path="res://assets/Adventurer.ttf" id="1_u6coo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_03smp"]
+
+[resource]
+default_font = ExtResource("1_u6coo")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 0
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 8
+Label/styles/normal = SubResource("StyleBoxEmpty_03smp")

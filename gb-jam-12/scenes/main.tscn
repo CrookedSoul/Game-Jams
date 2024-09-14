@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://buco5kbc2tsi4"]
+
+[ext_resource type="Theme" uid="uid://ba6n5ejl88kg1" path="res://resources/game_boy_theme.tres" id="1_51y0y"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("1_51y0y")
+text = "Test"
