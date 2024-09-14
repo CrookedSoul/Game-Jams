@@ -1,0 +1,214 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3f83f76rru2s"]
+
+[ext_resource type="Script" path="res://scenes/start_menu.gd" id="1_2wskt"]
+[ext_resource type="Texture2D" uid="uid://24tvuoqnw8j8" path="res://assets/start_screen.png" id="1_hrrht"]
+[ext_resource type="Theme" uid="uid://ba6n5ejl88kg1" path="res://resources/game_boy_theme.tres" id="2_125e8"]
+
+[sub_resource type="Animation" id="Animation_b4pkj"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:theme_override_colors/font_color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.6, 1, 1.1, 1.5, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.478431, 0.109804, 0.67451, 1), Color(0.180392, 0.027451, 0.247059, 1), Color(0.478431, 0.109804, 0.67451, 1), Color(0.180392, 0.027451, 0.247059, 1), Color(0.478431, 0.109804, 0.67451, 1), Color(0.180392, 0.027451, 0.247059, 1), Color(0.478431, 0.109804, 0.67451, 1), Color(0.180392, 0.027451, 0.247059, 1), Color(0.180392, 0.027451, 0.247059, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Press any key 
+to start"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, 105)]
+}
+
+[sub_resource type="Animation" id="Animation_tgfuc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.478431, 0.109804, 0.67451, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Press any key 
+to start"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(37, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_tg3h8"]
+resource_name = "button_clicked"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667, 0.666667, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["
+", "Anna?"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.766667),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, 110)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.766667, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.180392, 0.027451, 0.247059, 1), Color(0.478431, 0.109804, 0.67451, 1), Color(0.678431, 0.286275, 0.882353, 1), Color(0.921569, 0.827451, 0.972549, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.46667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enter_game"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pxk25"]
+_data = {
+"RESET": SubResource("Animation_tgfuc"),
+"button_clicked": SubResource("Animation_tg3h8"),
+"idle": SubResource("Animation_b4pkj")
+}
+
+[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_2wskt")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pxk25")
+}
+autoplay = "idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(80, 72)
+texture = ExtResource("1_hrrht")
+hframes = 4
+
+[node name="Label" type="Label" parent="."]
+offset_left = 37.0
+offset_top = 100.0
+offset_right = 142.0
+offset_bottom = 136.0
+theme = ExtResource("2_125e8")
+theme_type_variation = &"TooltipLabel"
+theme_override_colors/font_color = Color(0.478431, 0.109804, 0.67451, 1)
+theme_override_font_sizes/font_size = 16
+text = "Press any key 
+to start"
+horizontal_alignment = 1
+vertical_alignment = 1
