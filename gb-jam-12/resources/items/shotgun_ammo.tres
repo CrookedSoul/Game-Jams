@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://bble4ixb4uvh3"]
+
+[ext_resource type="Script" path="res://resources/item_data.gd" id="1_qi74k"]
+
+[resource]
+script = ExtResource("1_qi74k")
+id = "shotgun_ammo"
+name = "Shotgun Ammo"
+is_weapon = false
+bullet_damage = 0

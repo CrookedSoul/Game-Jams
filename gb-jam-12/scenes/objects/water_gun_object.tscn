@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkst3g5ydfqvu"]
+
+[ext_resource type="Texture2D" uid="uid://elxr3mmrh12w" path="res://assets/water_gun_16x16.png" id="1_qcswy"]
+[ext_resource type="Script" path="res://scenes/objects/water_gun_object.gd" id="1_wpbj1"]
+[ext_resource type="PackedScene" uid="uid://n5ikjpovrmtn" path="res://components/interactable_component.tscn" id="2_cfnj4"]
+[ext_resource type="Resource" uid="uid://da45xxs38ahb8" path="res://resources/items/handgun.tres" id="2_g3vam"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dikhk"]
+size = Vector2(20, 15)
+
+[node name="WaterGunObject" type="Node2D"]
+script = ExtResource("1_wpbj1")
+item_data = ExtResource("2_g3vam")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qcswy")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("2_cfnj4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+z_index = 5
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_dikhk")

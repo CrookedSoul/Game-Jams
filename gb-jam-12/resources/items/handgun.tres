@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://da45xxs38ahb8"]
+
+[ext_resource type="Script" path="res://resources/item_data.gd" id="1_4e6vl"]
+[ext_resource type="Texture2D" uid="uid://elxr3mmrh12w" path="res://assets/water_gun_16x16.png" id="1_aj6ls"]
+
+[resource]
+script = ExtResource("1_4e6vl")
+id = "0"
+name = "Water Gun"
+icon = ExtResource("1_aj6ls")
+is_weapon = true
+bullet_damage = 3

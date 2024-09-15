@@ -6,3 +6,11 @@ enum RangeState
 	IN_RANGE,
 	TOO_CLOSE
 }
+
+enum Items{
+	Handgun,
+	Shotgun,
+	Smg,
+	Ammo,
+	Food
+}

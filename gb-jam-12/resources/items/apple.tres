@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://fw7rfuw04204"]
+
+[ext_resource type="Script" path="res://resources/item_data.gd" id="1_2dcdc"]
+
+[resource]
+script = ExtResource("1_2dcdc")
+id = "apple"
+name = "Apple"
+is_weapon = false
+bullet_damage = 0

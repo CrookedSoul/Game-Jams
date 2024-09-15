@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dn3bj2cvb3ac4"]
+
+[ext_resource type="Script" path="res://resources/item_data.gd" id="1_5jce5"]
+
+[resource]
+script = ExtResource("1_5jce5")
+id = "2"
+name = "Submachine"
+is_weapon = true
+bullet_damage = 1
