@@ -20,4 +20,4 @@ func _process(delta: float) -> void:
 
 
 func enter_game():
-	pass
+	GameEvents.emit_level_change(1);
