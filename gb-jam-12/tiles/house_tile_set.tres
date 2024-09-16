@@ -1,6 +1,22 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://hmgmi8becirw"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://hmgmi8becirw"]
 
+[ext_resource type="Texture2D" uid="uid://drj8er8ljqxkl" path="res://assets/furniture_house_16x16.png" id="1_7y30v"]
 [ext_resource type="Texture2D" uid="uid://c04khe64c1ys8" path="res://assets/house_tiles_16x16.png" id="1_nvpo3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_te2iq"]
+texture = ExtResource("1_7y30v")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e0ivg"]
 texture = ExtResource("1_nvpo3")
@@ -49,3 +65,4 @@ texture = ExtResource("1_nvpo3")
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/2 = SubResource("TileSetAtlasSource_e0ivg")
+sources/0 = SubResource("TileSetAtlasSource_te2iq")

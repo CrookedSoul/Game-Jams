@@ -7,6 +7,7 @@ extends Node
 @export var health_bar : TextureRect
 @export var ammo_label : Label
 @export var equiped_item_icon : TextureRect
+@export var dialog_rich_text_label : RichTextLabel
 
 var zero_hp = preload("res://assets/0_hearts_16x16.png")
 var one_hp = preload("res://assets/1_heart_16x16.png")
@@ -29,9 +30,12 @@ func _ready() -> void:
 	GameEvents.hp_changed.connect(on_hp_changed)
 	GameEvents.ammo_changed.connect(on_ammo_changed)
 	GameEvents.item_changed.connect(on_item_changed)
+	GameEvents.start_dialog.connect(on_start_dialog)
+	GameEvents.continue_dialog.connect(on_continue_dialog)
 
 
 func on_set_ui_visibility(visible: bool):
+	GameEvents.ui_visible = visible
 	ui_margin_container.visible = visible
 
 	
@@ -46,6 +50,7 @@ func on_level_change(level: int):
 	level_loading = level
 	PlayerStats.current_level = level
 
+	GameEvents.ui_visible = false
 	ui_margin_container.visible = false
 	animation_player.play("close_in")
 
@@ -72,6 +77,7 @@ func change_level():
 	level_loading = 999
 	
 func show_ui():
+	GameEvents.ui_visible = true
 	ui_margin_container.visible = true
 
 
@@ -102,3 +108,26 @@ func on_item_changed(current_item: ItemData):
 
 func on_ammo_changed(current_ammo : int):
 	ammo_label.text = str(current_ammo)
+
+
+var current_dialog : Array[String]
+var current_dialog_index : int
+func on_start_dialog(text: Array[String]):
+	if text == null || text.size() < 1:
+		return 
+
+	current_dialog = text
+	dialog_rich_text_label.text = current_dialog[0]
+	current_dialog_index = 0
+	dialog_margin_container.visible = true
+	GameEvents.dialog_visible = true;
+
+
+func on_continue_dialog():
+	if current_dialog.size() > current_dialog_index + 1:
+		current_dialog_index = current_dialog_index + 1
+		dialog_rich_text_label.text = current_dialog[current_dialog_index]
+	else:
+		current_dialog_index = 0
+		dialog_margin_container.visible = false
+		GameEvents.dialog_visible = false;

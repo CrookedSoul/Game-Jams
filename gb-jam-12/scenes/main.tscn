@@ -124,7 +124,7 @@ _data = {
 "open_up": SubResource("Animation_xte81")
 }
 
-[node name="Main" type="Node" node_paths=PackedStringArray("ui_margin_container", "dialog_margin_container", "game_view", "animation_player", "health_bar", "ammo_label", "equiped_item_icon")]
+[node name="Main" type="Node" node_paths=PackedStringArray("ui_margin_container", "dialog_margin_container", "game_view", "animation_player", "health_bar", "ammo_label", "equiped_item_icon", "dialog_rich_text_label")]
 script = ExtResource("1_ctbd4")
 ui_margin_container = NodePath("CanvasLayer/UIMarginContainer")
 dialog_margin_container = NodePath("CanvasLayer/DialogMarginContainer")
@@ -133,6 +133,7 @@ animation_player = NodePath("SceneTransition/AnimationPlayer")
 health_bar = NodePath("CanvasLayer/UIMarginContainer/HealthBarTextRect")
 ammo_label = NodePath("CanvasLayer/UIMarginContainer/VBoxContainer/AmmoLabel")
 equiped_item_icon = NodePath("CanvasLayer/UIMarginContainer/VBoxContainer/ItemIcon")
+dialog_rich_text_label = NodePath("CanvasLayer/DialogMarginContainer/RichTextLabel")
 
 [node name="SceneTransition" type="CanvasLayer" parent="."]
 
@@ -148,6 +149,7 @@ z_index = 4096
 position = Vector2(80, 72)
 texture = ExtResource("2_y7fj4")
 hframes = 19
+frame = 18
 
 [node name="GameView" type="Node" parent="."]
 
@@ -193,7 +195,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DialogMarginContainer" type="MarginContainer" parent="CanvasLayer"]
-visible = false
 custom_minimum_size = Vector2(0, 60)
 anchors_preset = 12
 anchor_top = 1.0
@@ -210,7 +211,6 @@ layout_mode = 2
 size_flags_vertical = 8
 mouse_force_pass_scroll_events = false
 theme = ExtResource("1_51y0y")
-text = "You picked up a handgun."
 scroll_active = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false

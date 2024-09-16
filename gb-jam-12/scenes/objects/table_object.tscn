@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bthcon2hp8oxu"]
+
+[ext_resource type="Script" path="res://scenes/objects/table_object.gd" id="1_pqqed"]
+[ext_resource type="Texture2D" uid="uid://djymx5wdrvgpe" path="res://assets/table_32x32.png" id="1_qfpdo"]
+[ext_resource type="PackedScene" uid="uid://n5ikjpovrmtn" path="res://components/interactable_component.tscn" id="2_yfih6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0n3lq"]
+size = Vector2(24, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5r30"]
+size = Vector2(32, 30)
+
+[node name="TableObject" type="StaticBody2D"]
+z_index = 5
+script = ExtResource("1_pqqed")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_0n3lq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qfpdo")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("2_yfih6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+z_index = 5
+shape = SubResource("RectangleShape2D_b5r30")

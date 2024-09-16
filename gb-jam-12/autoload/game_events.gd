@@ -1,5 +1,9 @@
 extends Node
 
+var dialog_visible : bool
+var ui_visible : bool
+var can_change_level : bool
+
 signal level_change(level: int)
 signal take_item(item : ItemData)
 signal player_damaged()
@@ -11,9 +15,19 @@ signal set_dialog_visibility(visible: bool)
 signal hp_changed(current_hp: int)
 signal ammo_changed(current_ammo: int)
 signal item_changed(current_item: ItemData)
+signal start_dialog(text: Array[String])
+signal continue_dialog()
 
 func emit_player_damaged():
 	player_damaged.emit();
+
+
+func emit_start_dialog(text: Array[String]):
+	start_dialog.emit(text);
+
+
+func emit_continue_dialog():
+	continue_dialog.emit()
 
 
 func emit_take_item(item : ItemData):

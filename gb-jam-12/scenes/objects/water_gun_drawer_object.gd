@@ -9,7 +9,8 @@ var has_item: bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	interactable_component.interactable.connect(on_interaction)
-	dialog_text_item.append("Picked up Holy water (gun).")
+	dialog_text_item.append("Ah, my water gun,")
+	dialog_text_item.append("could be useful with holy water.")
 	dialog_text_no_item.append("Empty drawer.")
 
 

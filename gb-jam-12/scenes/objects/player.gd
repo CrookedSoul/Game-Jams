@@ -12,7 +12,7 @@ class_name Player
 @export var user_interface: Node;
 var movement_vector;
 var player_can_interact = false
-var can_attack = true
+var can_press_action = true
 var can_change_item = true
 var previous_hp = 0
 
@@ -37,7 +37,7 @@ func _ready():
 	update_health_display();
 
 func on_timer_timeout():
-	can_attack = true;
+	can_press_action = true;
 
 
 func on_item_change_timeout():
@@ -55,15 +55,25 @@ func on_health_changed():
 
 
 func _process(delta):
+	show_interactable_component.visible = player_can_interact
+	if GameEvents.dialog_visible:
+		if Input.is_action_pressed("b_button") && can_press_action:
+			can_press_action = false
+			cooldown_timer.wait_time = 0.5
+			cooldown_timer.start()
+			GameEvents.emit_continue_dialog()
+		return
+		
 	if previous_hp != PlayerStats.current_hp:
 		previous_hp = PlayerStats.current_hp
 		GameEvents.emit_hp_changed(PlayerStats.current_hp)
 
-	show_interactable_component.visible = player_can_interact
-	if player_can_interact && Input.is_action_pressed("b_button"):
-		can_attack = false
+	if player_can_interact && Input.is_action_pressed("b_button") && can_press_action:
+		can_press_action = false
+		cooldown_timer.wait_time = 0.5
+		cooldown_timer.start()
 		GameEvents.emit_interact_with_item()
-	elif !player_can_interact && Input.is_action_pressed("b_button"):
+	elif !player_can_interact && Input.is_action_pressed("b_button") && can_press_action:
 		on_use_item()
 	
 	if can_change_item && Input.is_action_pressed("a_button"):
@@ -120,7 +130,7 @@ func on_use_item():
 	if PlayerStats.current_item == null:
 		return
 
-	if PlayerStats.current_item.is_weapon && can_attack:
+	if PlayerStats.current_item.is_weapon && can_press_action:
 		if !PlayerStats.can_and_use_ammo():
 			return
 
@@ -131,7 +141,7 @@ func on_use_item():
 		projectile_instance.global_rotation = launch_position.global_rotation
 		projectile_instance.hitbox_component.damage = PlayerStats.current_item.bullet_damage;
 		projectile_instance.global_position = launch_position.global_position
-		can_attack = false;
+		can_press_action = false;
 		cooldown_timer.wait_time = PlayerStats.current_item.time_between_shots;
 		cooldown_timer.start()
 	
