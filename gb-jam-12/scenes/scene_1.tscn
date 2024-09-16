@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c5kjugdpam51w"]
+[gd_scene load_steps=11 format=4 uid="uid://c5kjugdpam51w"]
 
 [ext_resource type="Script" path="res://scenes/scene_1.gd" id="1_80v1v"]
 [ext_resource type="PackedScene" uid="uid://fk70sfm00807" path="res://scenes/objects/player.tscn" id="1_aqgr5"]
@@ -9,12 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://05pvftkxjxkh" path="res://scenes/objects/door_object.tscn" id="8_fc532"]
 [ext_resource type="PackedScene" uid="uid://bthcon2hp8oxu" path="res://scenes/objects/table_object.tscn" id="8_xexaq"]
 [ext_resource type="PackedScene" uid="uid://e726lu85hnm" path="res://scenes/objects/bed_object.tscn" id="9_id5w5"]
+[ext_resource type="PackedScene" uid="uid://be46sa1ink5ob" path="res://scenes/objects/footsteps_object.tscn" id="10_8aor4"]
 
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_80v1v")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_aqgr5")]
-position = Vector2(166, 104)
+position = Vector2(136, 120)
 
 [node name="GameCamera" parent="." instance=ExtResource("3_6hpnk")]
 limit_left = 0
@@ -54,5 +55,19 @@ position = Vector2(159, 128)
 
 [node name="BedObject" parent="Node2D" instance=ExtResource("9_id5w5")]
 position = Vector2(34, 48)
+
+[node name="FootstepsObject" parent="Node2D" instance=ExtResource("10_8aor4")]
+z_index = 5
+position = Vector2(119, 120)
+
+[node name="FootstepsObject2" parent="Node2D" instance=ExtResource("10_8aor4")]
+z_index = 5
+position = Vector2(95, 139)
+rotation = -0.619592
+
+[node name="FootstepsObject3" parent="Node2D" instance=ExtResource("10_8aor4")]
+z_index = 5
+position = Vector2(67, 162)
+rotation = -0.619592
 
 [node name="ForegroundLayer" type="Node2D" parent="." groups=["foreground_layer"]]
