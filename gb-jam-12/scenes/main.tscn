@@ -1,17 +1,152 @@
-[gd_scene load_steps=7 format=3 uid="uid://buco5kbc2tsi4"]
+[gd_scene load_steps=12 format=3 uid="uid://buco5kbc2tsi4"]
 
 [ext_resource type="Theme" uid="uid://ba6n5ejl88kg1" path="res://resources/game_boy_theme.tres" id="1_51y0y"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ctbd4"]
 [ext_resource type="Texture2D" uid="uid://dn0kcqwvapvb2" path="res://assets/3_hearts_16x16.png" id="1_uqijw"]
 [ext_resource type="PackedScene" uid="uid://c3f83f76rru2s" path="res://scenes/start_menu.tscn" id="2_ojbhx"]
+[ext_resource type="Texture2D" uid="uid://dsixsgo0gvf36" path="res://assets/scene_transition.png" id="2_y7fj4"]
 [ext_resource type="Texture2D" uid="uid://elxr3mmrh12w" path="res://assets/water_gun_16x16.png" id="3_a5atl"]
 [ext_resource type="Texture2D" uid="uid://baudb05mxkisx" path="res://assets/button_b_press_single.png" id="6_t3dku"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("ui_margin_container", "dialog_margin_container", "game_view")]
+[sub_resource type="Animation" id="Animation_rsrm1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("SceneTransition/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SceneTransition/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wdfe0"]
+resource_name = "close_in"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SceneTransition/Sprite2D:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SceneTransition/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.620459),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.620459),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_level"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xte81"]
+resource_name = "open_up"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SceneTransition/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SceneTransition/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.633333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_ui"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bs5he"]
+_data = {
+"RESET": SubResource("Animation_rsrm1"),
+"close_in": SubResource("Animation_wdfe0"),
+"open_up": SubResource("Animation_xte81")
+}
+
+[node name="Main" type="Node" node_paths=PackedStringArray("ui_margin_container", "dialog_margin_container", "game_view", "animation_player")]
 script = ExtResource("1_ctbd4")
 ui_margin_container = NodePath("CanvasLayer/UIMarginContainer")
 dialog_margin_container = NodePath("CanvasLayer/DialogMarginContainer")
 game_view = NodePath("GameView")
+animation_player = NodePath("SceneTransition/AnimationPlayer")
+
+[node name="SceneTransition" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SceneTransition"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_bs5he")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="SceneTransition"]
+visible = false
+z_index = 4096
+position = Vector2(80, 72)
+texture = ExtResource("2_y7fj4")
+hframes = 19
 
 [node name="GameView" type="Node" parent="."]
 
