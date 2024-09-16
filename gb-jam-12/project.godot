@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameEvents="*res://autoload/game_events.tscn"
 GlobalEnums="*res://autoload/global_enums.tscn"
+PlayerStats="*res://autoload/player_stats.tscn"
 
 [display]
 

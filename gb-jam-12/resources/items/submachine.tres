@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_5jce5")
-id = "2"
+id = "submachine"
 name = "Submachine"
 is_weapon = true
+time_between_shots = 0.0
 bullet_damage = 1

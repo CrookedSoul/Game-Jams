@@ -147,7 +147,6 @@ libraries = {
 [node name="HealthComponent" parent="." instance=ExtResource("2_usdq0")]
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_skt05")]
-visible = false
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_3n47h")]
 collision_layer = 0
@@ -166,8 +165,18 @@ shape = SubResource("RectangleShape2D_100va")
 texture = ExtResource("3_rrdxx")
 hframes = 3
 
+[node name="LaunchPosition" type="Node2D" parent="."]
+position = Vector2(0, 16)
+
 [node name="ShowInteractable" type="Node2D" parent="."]
 visible = false
 
 [node name="ShowInteractableComponent" parent="ShowInteractable" instance=ExtResource("8_hoaqu")]
 position = Vector2(13, -14)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ItemChangeTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

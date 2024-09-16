@@ -7,4 +7,5 @@ script = ExtResource("1_len4l")
 id = "handgun_ammo"
 name = "Handgun Ammo"
 is_weapon = false
+time_between_shots = 0.0
 bullet_damage = 0

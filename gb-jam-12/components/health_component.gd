@@ -31,6 +31,14 @@ func damage(damage_ammount: float):
 	health_changed.emit();
 	Callable(check_death).call_deferred();
 
+	
+func heal(heal_ammount: float):
+	if (current_health == max_health):
+		return
+
+	current_health = current_health + heal_ammount;
+	health_changed.emit();
+
 
 func get_health_percent():
 	if max_health <= 0:

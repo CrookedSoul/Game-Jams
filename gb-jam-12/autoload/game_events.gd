@@ -8,6 +8,9 @@ signal interact_with_item()
 signal enemy_killed()
 signal set_ui_visibility(visible: bool)
 signal set_dialog_visibility(visible: bool)
+signal hp_changed(current_hp: int)
+signal ammo_changed(current_ammo: int)
+signal item_changed(current_item: ItemData)
 
 func emit_player_damaged():
 	player_damaged.emit();
@@ -35,6 +38,18 @@ func emit_set_ui_visibility(visible: bool):
 
 func emit_set_dialog_visibility(visible: bool):
 	set_dialog_visibility.emit(visible);
+
+
+func emit_hp_changed(current_hp: int):
+	hp_changed.emit(current_hp);
+
+	
+func emit_ammo_changed(current_ammo: int):
+	ammo_changed.emit(current_ammo);
+
+
+func emit_item_changed(current_item: ItemData):
+	item_changed.emit(current_item);
 
 
 func emit_enemy_killed():

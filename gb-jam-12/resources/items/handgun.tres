@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://da45xxs38ahb8"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://da45xxs38ahb8"]
 
 [ext_resource type="Script" path="res://resources/item_data.gd" id="1_4e6vl"]
 [ext_resource type="Texture2D" uid="uid://elxr3mmrh12w" path="res://assets/water_gun_16x16.png" id="1_aj6ls"]
+[ext_resource type="PackedScene" uid="uid://de2plpxa71rpn" path="res://scenes/projectiles/hangun_bullet.tscn" id="1_hqnki"]
 
 [resource]
 script = ExtResource("1_4e6vl")
-id = "0"
+id = "water_gun"
 name = "Water Gun"
 icon = ExtResource("1_aj6ls")
 is_weapon = true
+time_between_shots = 1.0
+bullet_scene = ExtResource("1_hqnki")
 bullet_damage = 3
