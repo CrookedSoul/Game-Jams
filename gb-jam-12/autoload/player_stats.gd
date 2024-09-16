@@ -62,12 +62,20 @@ func on_take_item(item: ItemData):
 			GameEvents.emit_ammo_changed(handgun_ammo)
 	elif item.id == "apple":
 		apples_count = apples_count + 1
+		if current_item != null && current_item.id == "apple":
+			GameEvents.emit_ammo_changed(apples_count)
 	elif item.id == "handgun_ammo":
 		handgun_ammo = handgun_ammo + 15
+		if current_item != null && current_item.id == "water_gun":
+			GameEvents.emit_ammo_changed(handgun_ammo)
 	elif item.id == "shotgun_ammo":
 		shotgun_ammo = shotgun_ammo + 6
+		if current_item != null && current_item.id == "shotgun":
+			GameEvents.emit_ammo_changed(shotgun_ammo)
 	elif item.id == "submachine_ammo":
 		submachine_ammo = submachine_ammo + 30
+		if current_item != null && current_item.id == "submachine":
+			GameEvents.emit_ammo_changed(submachine_ammo)
 	
 
 func can_and_use_ammo():

@@ -4,5 +4,6 @@
 [ext_resource type="Resource" uid="uid://fw7rfuw04204" path="res://resources/items/apple.tres" id="2_f242p"]
 
 [node name="PlayerStats" type="Node2D"]
+position = Vector2(2, 0)
 script = ExtResource("1_fvnwa")
 apple_item = ExtResource("2_f242p")

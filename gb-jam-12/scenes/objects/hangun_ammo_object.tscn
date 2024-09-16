@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dww1ic4f2hvkp"]
+
+[ext_resource type="Script" path="res://scenes/objects/hangun_ammo_object.gd" id="1_dp87k"]
+[ext_resource type="Texture2D" uid="uid://dnl5j8s8gc0sg" path="res://assets/handgun_ammo.png" id="2_58f7o"]
+[ext_resource type="Resource" uid="uid://dj42lrverni3y" path="res://resources/items/hangun_ammo.tres" id="2_avyj7"]
+[ext_resource type="PackedScene" uid="uid://n5ikjpovrmtn" path="res://components/interactable_component.tscn" id="3_s8etd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_636ml"]
+size = Vector2(18, 20)
+
+[node name="HangunAmmoObject" type="Node2D"]
+script = ExtResource("1_dp87k")
+item_data = ExtResource("2_avyj7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_58f7o")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("3_s8etd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+z_index = 5
+shape = SubResource("RectangleShape2D_636ml")

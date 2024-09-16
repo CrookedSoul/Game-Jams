@@ -22,7 +22,7 @@ var previous_hp = 0
 
 func _ready():
 	GameEvents.player_can_interact.connect(on_player_can_interact)
-	GameEvents.take_item.connect(PlayerStats.on_take_item)
+	GameEvents.take_item.connect(on_take_item)
 	#GameEvents.player_damaged.connect(on_player_damaged)
 
 	cooldown_timer.timeout.connect(on_timer_timeout);
@@ -44,6 +44,12 @@ func on_item_change_timeout():
 	can_change_item = true;
 
 
+func on_take_item(item: ItemData):
+	cooldown_timer.wait_time = 0.5
+	cooldown_timer.start()
+	PlayerStats.on_take_item(item)
+
+
 func on_health_changed():
 	GameEvents.emit_hp_changed(health_component.current_health)
 
@@ -55,6 +61,7 @@ func _process(delta):
 
 	show_interactable_component.visible = player_can_interact
 	if player_can_interact && Input.is_action_pressed("b_button"):
+		can_attack = false
 		GameEvents.emit_interact_with_item()
 	elif !player_can_interact && Input.is_action_pressed("b_button"):
 		on_use_item()
@@ -123,9 +130,9 @@ func on_use_item():
 		projectile_instance.is_enemy_projectile = false
 		projectile_instance.global_rotation = launch_position.global_rotation
 		projectile_instance.hitbox_component.damage = PlayerStats.current_item.bullet_damage;
-		cooldown_timer.wait_time = PlayerStats.current_item.time_between_shots;
 		projectile_instance.global_position = launch_position.global_position
 		can_attack = false;
+		cooldown_timer.wait_time = PlayerStats.current_item.time_between_shots;
 		cooldown_timer.start()
 	
 	elif PlayerStats.current_item.id == "apple":

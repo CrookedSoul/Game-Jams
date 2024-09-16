@@ -17,6 +17,7 @@ var handgun_icon = preload("res://assets/water_gun_16x16.png")
 var apple_icon = preload("res://assets/apple_16x16.png")
 
 var scene_1 = preload("res://scenes/scene_1.tscn").instantiate()
+var scene_2 = preload("res://scenes/scene_2.tscn").instantiate()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,16 +38,20 @@ func on_set_ui_visibility(visible: bool):
 func on_set_dialog_visibility(visible: bool):
 	dialog_margin_container.visible = visible
 
-var level_loading: int
+var level_loading: int = 999
 func on_level_change(level: int):
+	if level_loading != 999:
+		return
+
 	level_loading = level
+	PlayerStats.current_level = level
 
 	ui_margin_container.visible = false
 	animation_player.play("close_in")
 
 
 func change_level():
-	if !level_loading:
+	if level_loading == 999:
 		return
 	animation_player.play("open_up")
 
@@ -61,8 +66,10 @@ func change_level():
 		pass # should go to start screen
 	elif level_loading == 1:
 		game_view.add_child(scene_1)
+	elif level_loading == 2:
+		game_view.add_child(scene_2)
 	
-	level_loading = 9999
+	level_loading = 999
 	
 func show_ui():
 	ui_margin_container.visible = true
