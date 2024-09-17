@@ -8,3 +8,4 @@ class_name ItemData
 @export var time_between_shots : float
 @export var bullet_scene : PackedScene
 @export var bullet_damage : int 
+@export var pick_up_description : Array[String] 

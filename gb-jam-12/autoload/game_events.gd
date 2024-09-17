@@ -2,7 +2,6 @@ extends Node
 
 var dialog_visible : bool
 var ui_visible : bool
-var can_change_level : bool
 
 signal level_change(level: int)
 signal take_item(item : ItemData)

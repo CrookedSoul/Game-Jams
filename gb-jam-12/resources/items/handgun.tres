@@ -13,3 +13,4 @@ is_weapon = true
 time_between_shots = 1.0
 bullet_scene = ExtResource("1_hqnki")
 bullet_damage = 3
+pick_up_description = Array[String](["Ah, my water gun,", "could be useful with holy water."])

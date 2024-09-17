@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://cv0x2e0bol2w5"]
+
+[ext_resource type="Script" path="res://scenes/objects/wall_trap_object.gd" id="1_1bhax"]
+[ext_resource type="Texture2D" uid="uid://w3oxdqm7b3yo" path="res://assets/wall_trap.png" id="1_yy5vf"]
+[ext_resource type="PackedScene" uid="uid://cttguyu53et2a" path="res://scenes/projectiles/wall_trap_projectile.tscn" id="2_jq6yh"]
+
+[sub_resource type="Animation" id="Animation_qdq4q"]
+resource_name = "slow_spawning"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.966667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_projectile"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_niokd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lp0y4"]
+resource_name = "fast_spawning"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1.03526, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.490555),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_projectile"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oti7p"]
+_data = {
+"RESET": SubResource("Animation_niokd"),
+"fast_spawning": SubResource("Animation_lp0y4"),
+"slow_spawning": SubResource("Animation_qdq4q")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bi54q"]
+size = Vector2(17, 16)
+
+[node name="WallTrapObject" type="StaticBody2D"]
+z_index = 10
+script = ExtResource("1_1bhax")
+wall_trap_projectil = ExtResource("2_jq6yh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oti7p")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_bi54q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yy5vf")
+hframes = 4
+
+[node name="LaunchPosition" type="Node2D" parent="."]
+position = Vector2(10, 0)

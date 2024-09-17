@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cttguyu53et2a"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/wall_trap_projectile.gd" id="1_iibsi"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_qsco7"]
+[ext_resource type="Script" path="res://components/wall_kills_component.gd" id="3_xamsy"]
+[ext_resource type="Texture2D" uid="uid://be055y2tb6gcg" path="res://assets/wall_trap_projectile.png" id="4_lp3n8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wujs6"]
+size = Vector2(10, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6s3pk"]
+size = Vector2(4, 4)
+
+[node name="WallTrapProjectile" type="Node2D"]
+z_index = 5
+script = ExtResource("1_iibsi")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_qsco7")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_wujs6")
+
+[node name="WallKillsComponent" type="Area2D" parent="."]
+script = ExtResource("3_xamsy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallKillsComponent"]
+shape = SubResource("RectangleShape2D_6s3pk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_lp3n8")

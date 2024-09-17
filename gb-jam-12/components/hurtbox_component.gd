@@ -26,8 +26,8 @@ func on_area_entered(other_area: Area2D):
 	deal_damage(hitbox_component.damage);
 	
 	#if projectile has durability reduce it
-	#if (hitbox_component.get_parent() is BasicArrow):
-	#	(hitbox_component.get_parent() as BasicArrow).reduce_durability(1);
+	if !hitbox_component.get_parent() is FloorTrapObject:
+		hitbox_component.get_parent().queue_free();
 
 
 func deal_damage(damage: int):
@@ -39,13 +39,13 @@ func deal_damage(damage: int):
 	
 	health_component.damage(damage);
 	
-	var floating_text = floating_text_scene.instantiate() as Node2D
-	get_tree().get_first_node_in_group("foreground_layer").add_child(floating_text);
-	floating_text.global_position = global_position + (Vector2.UP * 16)
+	#var floating_text = floating_text_scene.instantiate() as Node2D
+	#get_tree().get_first_node_in_group("foreground_layer").add_child(floating_text);
+	#floating_text.global_position = global_position + (Vector2.UP * 16)
 	
-	var format_string = "%0.1f"
-	if round(damage) == damage:
-		format_string = "%0.0f"
+	#var format_string = "%0.1f"
+	#if round(damage) == damage:
+	#	format_string = "%0.0f"
 	
-	floating_text.start(str(format_string % damage))
+	#floating_text.start(str(format_string % damage))
 	

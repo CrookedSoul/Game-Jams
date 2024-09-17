@@ -1,15 +1,18 @@
-[gd_scene load_steps=11 format=4 uid="uid://c5kjugdpam51w"]
+[gd_scene load_steps=14 format=4 uid="uid://c5kjugdpam51w"]
 
 [ext_resource type="Script" path="res://scenes/scene_1.gd" id="1_80v1v"]
 [ext_resource type="PackedScene" uid="uid://fk70sfm00807" path="res://scenes/objects/player.tscn" id="1_aqgr5"]
 [ext_resource type="PackedScene" uid="uid://cb4jw7krpt8t3" path="res://game_camera/game_camera.tscn" id="3_6hpnk"]
 [ext_resource type="TileSet" uid="uid://hmgmi8becirw" path="res://tiles/house_tile_set.tres" id="3_ebfsa"]
-[ext_resource type="PackedScene" uid="uid://bkst3g5ydfqvu" path="res://scenes/objects/water_gun_drawer_object.tscn" id="6_3b84l"]
-[ext_resource type="PackedScene" uid="uid://dww1ic4f2hvkp" path="res://scenes/objects/hangun_ammo_object.tscn" id="7_h1c4l"]
+[ext_resource type="PackedScene" uid="uid://cv0x2e0bol2w5" path="res://scenes/objects/wall_trap_object.tscn" id="5_ac48s"]
+[ext_resource type="Resource" uid="uid://dj42lrverni3y" path="res://resources/items/hangun_ammo.tres" id="6_1xsr2"]
+[ext_resource type="Resource" uid="uid://da45xxs38ahb8" path="res://resources/items/handgun.tres" id="6_kkyd0"]
+[ext_resource type="PackedScene" uid="uid://dww1ic4f2hvkp" path="res://scenes/objects/ItemDrawerObject.tscn" id="7_h1c4l"]
 [ext_resource type="PackedScene" uid="uid://05pvftkxjxkh" path="res://scenes/objects/door_object.tscn" id="8_fc532"]
 [ext_resource type="PackedScene" uid="uid://bthcon2hp8oxu" path="res://scenes/objects/table_object.tscn" id="8_xexaq"]
 [ext_resource type="PackedScene" uid="uid://e726lu85hnm" path="res://scenes/objects/bed_object.tscn" id="9_id5w5"]
 [ext_resource type="PackedScene" uid="uid://be46sa1ink5ob" path="res://scenes/objects/footsteps_object.tscn" id="10_8aor4"]
+[ext_resource type="PackedScene" uid="uid://dj005qjo54qga" path="res://scenes/objects/floor_trap_object.tscn" id="13_1fpe2"]
 
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_80v1v")
@@ -40,11 +43,21 @@ tile_set = ExtResource("3_ebfsa")
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="WaterGunObject" parent="Node2D" instance=ExtResource("6_3b84l")]
-position = Vector2(76, 44)
+[node name="WallTrapObject" parent="Node2D" instance=ExtResource("5_ac48s")]
+position = Vector2(25, 88)
+is_fast = true
 
-[node name="HangunAmmoObject" parent="Node2D" instance=ExtResource("7_h1c4l")]
-position = Vector2(168, 214)
+[node name="WallTrapObject2" parent="Node2D" instance=ExtResource("5_ac48s")]
+position = Vector2(25, 153)
+
+[node name="ItemDrawerObject2" parent="Node2D" instance=ExtResource("7_h1c4l")]
+position = Vector2(164, 212)
+rotation = 1.5708
+item_data = ExtResource("6_1xsr2")
+
+[node name="ItemDrawerObject" parent="Node2D" instance=ExtResource("7_h1c4l")]
+position = Vector2(72, 42)
+item_data = ExtResource("6_kkyd0")
 
 [node name="DoorObject" parent="Node2D" instance=ExtResource("8_fc532")]
 z_index = 100
@@ -69,5 +82,9 @@ rotation = -0.619592
 z_index = 5
 position = Vector2(67, 162)
 rotation = -0.619592
+
+[node name="FloorTrapObject" parent="Node2D" instance=ExtResource("13_1fpe2")]
+z_index = 5
+position = Vector2(72, 123)
 
 [node name="ForegroundLayer" type="Node2D" parent="." groups=["foreground_layer"]]
