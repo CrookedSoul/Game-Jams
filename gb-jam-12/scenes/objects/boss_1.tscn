@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://dq0wb8l2yugj3"]
+
+[ext_resource type="Script" path="res://scenes/objects/boss_1.gd" id="1_ka8vg"]
+[ext_resource type="Texture2D" uid="uid://vt12hhkdjrx0" path="res://assets/sister_boss_transformation.png" id="3_f8n0g"]
+[ext_resource type="PackedScene" uid="uid://mj6tmejhq2jn" path="res://components/attack_range_component.tscn" id="6_20qvu"]
+[ext_resource type="PackedScene" uid="uid://do3w40jold7fh" path="res://components/velocity_component.tscn" id="7_lf1au"]
+[ext_resource type="PackedScene" uid="uid://dghe6tn3spd65" path="res://components/health_component.tscn" id="8_v00xa"]
+[ext_resource type="PackedScene" uid="uid://dnb78nk8mopm5" path="res://components/hurtbox_component.tscn" id="9_xadqq"]
+[ext_resource type="PackedScene" uid="uid://csyl1r2163i3w" path="res://components/hitbox_component.tscn" id="10_53jkl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2j6p3"]
+size = Vector2(8, 15)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_18lp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6ysw"]
+size = Vector2(8, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ty4ar"]
+size = Vector2(8, 15)
+
+[node name="VampireEnemy" type="CharacterBody2D"]
+z_index = 10
+script = ExtResource("1_ka8vg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_2j6p3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_18lp3")
+}
+
+[node name="AttackRangeComponent" parent="." instance=ExtResource("6_20qvu")]
+attack_range = 96.0
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("3_f8n0g")
+hframes = 9
+frame = 8
+
+[node name="VelocityComponent" parent="." instance=ExtResource("7_lf1au")]
+max_speed = 20
+acceleration = 20.0
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("8_v00xa")]
+max_health = 12.0
+sprite = NodePath("../Visuals/Sprite2D")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9_xadqq")]
+collision_layer = 0
+collision_mask = 4
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_v6ysw")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("10_53jkl")]
+collision_layer = 2
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_ty4ar")

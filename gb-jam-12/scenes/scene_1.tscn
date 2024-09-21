@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://c5kjugdpam51w"]
+[gd_scene load_steps=13 format=4 uid="uid://c5kjugdpam51w"]
 
 [ext_resource type="Script" path="res://scenes/scene_1.gd" id="1_80v1v"]
 [ext_resource type="PackedScene" uid="uid://fk70sfm00807" path="res://scenes/objects/player.tscn" id="1_aqgr5"]
 [ext_resource type="PackedScene" uid="uid://cb4jw7krpt8t3" path="res://game_camera/game_camera.tscn" id="3_6hpnk"]
 [ext_resource type="TileSet" uid="uid://hmgmi8becirw" path="res://tiles/house_tile_set.tres" id="3_ebfsa"]
+[ext_resource type="PackedScene" uid="uid://v6exl5r4e3h0" path="res://scenes/objects/vampire_enemy.tscn" id="5_3yter"]
 [ext_resource type="Resource" uid="uid://dj42lrverni3y" path="res://resources/items/hangun_ammo.tres" id="6_1xsr2"]
 [ext_resource type="Resource" uid="uid://da45xxs38ahb8" path="res://resources/items/handgun.tres" id="6_kkyd0"]
 [ext_resource type="PackedScene" uid="uid://dww1ic4f2hvkp" path="res://scenes/objects/item_drawer_object.tscn" id="7_h1c4l"]
@@ -40,6 +41,9 @@ tile_map_data = PackedByteArray("AAAAAAAAAgAAAAMAAAABAAAAAgABAAMAAAACAAAAAgABAAM
 tile_set = ExtResource("3_ebfsa")
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="VampireEnemy" parent="Node2D" instance=ExtResource("5_3yter")]
+position = Vector2(45, 112)
 
 [node name="ItemDrawerObject2" parent="Node2D" instance=ExtResource("7_h1c4l")]
 position = Vector2(164, 212)
