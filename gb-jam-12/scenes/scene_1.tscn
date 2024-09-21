@@ -21,7 +21,7 @@ position = Vector2(136, 120)
 [node name="GameCamera" parent="." instance=ExtResource("3_6hpnk")]
 limit_left = 0
 limit_top = 0
-limit_right = 400
+limit_right = 190
 limit_bottom = 240
 editor_draw_limits = true
 

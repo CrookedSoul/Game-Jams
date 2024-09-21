@@ -4,6 +4,7 @@ var dialog_visible : bool
 var ui_visible : bool
 
 signal level_change(level: int)
+signal retry_level()
 signal take_item(item : ItemData)
 signal player_damaged()
 signal player_can_interact(can_interact: bool)
@@ -43,6 +44,10 @@ func emit_interact_with_item():
 
 func emit_level_change(level: int):
 	level_change.emit(level)
+
+
+func emit_retry_level():
+	retry_level.emit()
 
 
 func emit_set_ui_visibility(visible: bool):

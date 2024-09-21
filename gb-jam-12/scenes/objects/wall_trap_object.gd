@@ -31,6 +31,4 @@ func shoot_projectile():
 	
 
 func slow_down():
-	var randomFloat = randf_range(0.0, 1.0)
-	await get_tree().create_timer(randomFloat).timeout
-	animation_player.play("slow_spawning")
+	animation_player.play("ultra_slow_spawning")

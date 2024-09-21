@@ -145,7 +145,8 @@ libraries = {
 "": SubResource("AnimationLibrary_ibcr6")
 }
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_usdq0")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_usdq0")]
+sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_skt05")]
 
@@ -184,5 +185,5 @@ wait_time = 0.5
 one_shot = true
 
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.75
 one_shot = true

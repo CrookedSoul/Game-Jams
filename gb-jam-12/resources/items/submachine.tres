@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dn3bj2cvb3ac4"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dn3bj2cvb3ac4"]
 
 [ext_resource type="Script" path="res://resources/item_data.gd" id="1_5jce5"]
+[ext_resource type="PackedScene" uid="uid://dr7rdafth7ifn" path="res://scenes/projectiles/submachine_bullet.tscn" id="1_6k2iq"]
+[ext_resource type="Texture2D" uid="uid://cctahggytln86" path="res://assets/submachine_16x16.png" id="1_i60yj"]
 
 [resource]
 script = ExtResource("1_5jce5")
 id = "submachine"
 name = "Submachine"
+icon = ExtResource("1_i60yj")
 is_weapon = true
-time_between_shots = 0.0
-bullet_damage = 1
+time_between_shots = 0.25
+bullet_scene = ExtResource("1_6k2iq")
+bullet_damage = 2
+pick_up_description = Array[String](["Submachine gun...", "Fast and deadly"])

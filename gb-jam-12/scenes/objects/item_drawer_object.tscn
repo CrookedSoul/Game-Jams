@@ -11,6 +11,7 @@ size = Vector2(12, 8)
 size = Vector2(18, 20)
 
 [node name="ItemDrawerObject" type="StaticBody2D"]
+z_index = 5
 script = ExtResource("1_1l4ql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

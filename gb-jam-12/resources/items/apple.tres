@@ -1,10 +1,14 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://fw7rfuw04204"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://fw7rfuw04204"]
 
 [ext_resource type="Script" path="res://resources/item_data.gd" id="1_2dcdc"]
+[ext_resource type="Texture2D" uid="uid://4pfhhylhlh52" path="res://assets/apple_16x16.png" id="1_nwggk"]
 
 [resource]
 script = ExtResource("1_2dcdc")
 id = "apple"
 name = "Apple"
+icon = ExtResource("1_nwggk")
 is_weapon = false
+time_between_shots = 0.0
 bullet_damage = 0
+pick_up_description = Array[String](["An apple a day,", "Keeps enemies at bay"])

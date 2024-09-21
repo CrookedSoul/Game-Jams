@@ -15,10 +15,13 @@ var two_hp = preload("res://assets/2_hearts_16x16.png")
 var three_hp = preload("res://assets/3_hearts_16x16.png")
 
 var handgun_icon = preload("res://assets/water_gun_16x16.png")
+var shotgun_icon = preload("res://assets/shotgun_32x16.png")
+var submachine_icon = preload("res://assets/submachine_16x16.png")
 var apple_icon = preload("res://assets/apple_16x16.png")
 
-var scene_1 = preload("res://scenes/scene_1.tscn").instantiate()
-var scene_2 = preload("res://scenes/scene_2.tscn").instantiate()
+var scene_1 = preload("res://scenes/scene_1.tscn")
+var scene_2 = preload("res://scenes/scene_2.tscn")
+var scene_3 = preload("res://scenes/scene_3.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +35,7 @@ func _ready() -> void:
 	GameEvents.item_changed.connect(on_item_changed)
 	GameEvents.start_dialog.connect(on_start_dialog)
 	GameEvents.continue_dialog.connect(on_continue_dialog)
+	GameEvents.retry_level.connect(on_retry_level)
 
 
 func on_set_ui_visibility(visible: bool):
@@ -50,6 +54,13 @@ func on_level_change(level: int):
 	level_loading = level
 	PlayerStats.current_level = level
 
+	PlayerStats.checkpoint_apples = PlayerStats.apples_count
+	PlayerStats.checkpoint_handgun = PlayerStats.handgun_ammo
+	PlayerStats.checkpoint_submachine = PlayerStats.submachine_ammo
+	PlayerStats.checkpoint_shotgun = PlayerStats.shotgun_ammo
+	PlayerStats.checkpoint_hp = PlayerStats.current_hp
+	PlayerStats.checkpoint_items = PlayerStats.weapons
+
 	GameEvents.ui_visible = false
 	ui_margin_container.visible = false
 	animation_player.play("close_in")
@@ -61,20 +72,32 @@ func change_level():
 	animation_player.play("open_up")
 
 	var children = game_view.get_children()
-	if children == null:
-		return;
-
 	for child in children:
 		child.queue_free();
-	
+
 	if level_loading == 0:
 		pass # should go to start screen
 	elif level_loading == 1:
-		game_view.add_child(scene_1)
+		game_view.add_child(scene_1.instantiate())
 	elif level_loading == 2:
-		game_view.add_child(scene_2)
+		game_view.add_child(scene_2.instantiate())
+	elif level_loading == 3:
+		game_view.add_child(scene_3.instantiate())
 	
 	level_loading = 999
+
+
+func on_retry_level():
+	PlayerStats.apples_count = PlayerStats.checkpoint_apples 
+	PlayerStats.handgun_ammo = PlayerStats.checkpoint_handgun
+	PlayerStats.submachine_ammo = PlayerStats.checkpoint_submachine
+	PlayerStats.shotgun_ammo = PlayerStats.checkpoint_shotgun
+	PlayerStats.current_hp = PlayerStats.checkpoint_hp 
+	PlayerStats.weapons = PlayerStats.checkpoint_items 
+
+	GameEvents.emit_level_change(PlayerStats.current_level)
+
+
 	
 func show_ui():
 	GameEvents.ui_visible = true
@@ -99,9 +122,9 @@ func on_item_changed(current_item: ItemData):
 	if current_item.id == "water_gun":
 		equiped_item_icon.texture = handgun_icon
 	elif current_item.id == "shotgun":
-		equiped_item_icon.texture = handgun_icon
+		equiped_item_icon.texture = shotgun_icon
 	elif current_item.id == "submachine":
-		equiped_item_icon.texture = handgun_icon
+		equiped_item_icon.texture = submachine_icon
 	elif current_item.id == "apple":
 		equiped_item_icon.texture = apple_icon
 

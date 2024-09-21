@@ -1,5 +1,5 @@
 extends Node2D
-class_name HandgunBullet
+class_name Bullet
 
 var is_enemy_projectile: bool = false;
 var previous_projectile_data: bool; 

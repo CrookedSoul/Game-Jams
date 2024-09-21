@@ -7,4 +7,6 @@ script = ExtResource("1_di8gb")
 id = "submachine_ammo"
 name = "Submachine Ammo"
 is_weapon = false
+time_between_shots = 0.0
 bullet_damage = 0
+pick_up_description = Array[String](["Picked up Holy water,", "(submachine)."])

@@ -18,6 +18,7 @@ var previous_hp = 0
 
 @onready var item_change_timer = $ItemChangeTimer
 @onready var cooldown_timer = $CooldownTimer
+@onready var invulnerability_timer = $InvulnerabilityTimer
 @onready var launch_position = $LaunchPosition
 
 func _ready():
@@ -27,6 +28,7 @@ func _ready():
 
 	cooldown_timer.timeout.connect(on_timer_timeout);
 	item_change_timer.timeout.connect(on_item_change_timeout);
+	invulnerability_timer.timeout.connect(on_invulnerability_timer_timeout);
 
 	velocity_component.max_speed = PlayerStats.base_speed
 	velocity_component.acceleration = PlayerStats.base_acceleration
@@ -34,7 +36,6 @@ func _ready():
 	health_component.set_max_health(PlayerStats.current_hp, false);
 	health_component.health_changed.connect(on_health_changed);
 
-	update_health_display();
 
 func on_timer_timeout():
 	can_press_action = true;
@@ -44,6 +45,10 @@ func on_item_change_timeout():
 	can_change_item = true;
 
 
+func on_invulnerability_timer_timeout():
+	health_component.is_invulnerable = false;
+
+
 func on_take_item(item: ItemData):
 	cooldown_timer.wait_time = 0.5
 	cooldown_timer.start()
@@ -51,6 +56,14 @@ func on_take_item(item: ItemData):
 
 
 func on_health_changed():
+	if health_component.current_health <= 0:
+		GameEvents.emit_retry_level()
+		queue_free();
+		return
+
+	health_component.is_invulnerable = true;
+	invulnerability_timer.start()
+	PlayerStats.current_hp = health_component.current_health
 	GameEvents.emit_hp_changed(health_component.current_health)
 
 
@@ -117,14 +130,7 @@ func get_movement_vector():
 	var x_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left");
 	var y_movement = Input.get_action_strength("move_down") - Input.get_action_strength("move_up");
 	return Vector2(x_movement, y_movement);
-
-
-func update_health_display():
-	pass
-	#user_interface.update_health(health_component.current_health, health_component.max_health)
-	#health_bar.value = health_component.get_health_percent();
-
-			
+		
 
 func on_use_item():
 	if PlayerStats.current_item == null:
@@ -145,8 +151,8 @@ func on_use_item():
 		cooldown_timer.wait_time = PlayerStats.current_item.time_between_shots;
 		cooldown_timer.start()
 	
-	elif PlayerStats.current_item.id == "apple":
-		if !PlayerStats.can_and_use_ammo():
+	elif PlayerStats.current_item.id == "apple" && can_press_action:
+		if PlayerStats.can_and_use_ammo():
 			health_component.heal(1)
 
 

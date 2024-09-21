@@ -6,6 +6,9 @@ signal health_changed
 
 @export var is_player = false;
 @export var max_health: float = 10;
+@export var sprite: Sprite2D;
+
+var is_invulnerable
 var current_health;
 
 func _ready():
@@ -23,12 +26,24 @@ func set_max_health(new_max_health: float, is_level_up: bool):
 
 
 func damage(damage_ammount: float):
+	if is_invulnerable:
+		return
+		
 	# Not allow negative amonut
 	if is_player:
 		GameEvents.emit_player_damaged()
 		
 	current_health = max(current_health - damage_ammount, 0);
+
 	health_changed.emit();
+
+	sprite.visible = false;
+	await get_tree().create_timer(0.1).timeout
+	sprite.visible = true
+	sprite.visible = false;
+	await get_tree().create_timer(0.1).timeout
+	sprite.visible = true
+
 	Callable(check_death).call_deferred();
 
 	
@@ -48,8 +63,9 @@ func get_health_percent():
 
 
 func check_death():
-	if current_health == 0:
-		died.emit();
-		if !is_player:
-			GameEvents.emit_enemy_killed();
-		owner.queue_free();
+	pass
+	#if current_health == 0:
+	#	died.emit();
+	#	if !is_player:
+	#		GameEvents.emit_enemy_killed();
+	#	owner.queue_free();

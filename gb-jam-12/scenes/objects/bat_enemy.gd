@@ -5,11 +5,9 @@ extends CharacterBody2D
 @onready var visuals = $Visuals
 @onready var attack_range_component = $AttackRangeComponent
 @onready var health_component = $HealthComponent
-@onready var hitbox_component = $HitboxComponent
 
 @export var attack : PackedScene
 @export var attack_cooldown : float = 1
-var is_attacking = false;
 var is_dying = false;
 
 func _ready() -> void:
@@ -19,7 +17,7 @@ func _process(delta):
 	if GameEvents.dialog_visible:
 		return;
 		
-	if is_attacking || is_dying:
+	if is_dying:
 		return;
 	else:
 		animation_player.play("walking")
@@ -33,25 +31,16 @@ func _process(delta):
 		velocity_component.decelerate()
 		
 	velocity_component.move(self)
-	
-	if attack_range_component.range_state == GlobalEnums.RangeState.TOO_CLOSE || attack_range_component.range_state == GlobalEnums.RangeState.IN_RANGE:
-		is_attacking = true;
-		animation_player.play("attacking")
 
 	var move_sign = sign(velocity.x)
 	if move_sign != 0:
 		visuals.scale = Vector2(move_sign, 1)
-		hitbox_component.scale = Vector2(move_sign, 1)
 
 
 func on_health_changed():
 	if health_component.current_health <= 0:
 		is_dying = true;
 		animation_player.play("dying")
-
-
-func finished_attacking():
-	is_attacking = false
 
 
 func finished_dying():

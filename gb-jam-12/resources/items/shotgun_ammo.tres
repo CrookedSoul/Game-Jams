@@ -7,4 +7,6 @@ script = ExtResource("1_qi74k")
 id = "shotgun_ammo"
 name = "Shotgun Ammo"
 is_weapon = false
+time_between_shots = 2.0
 bullet_damage = 0
+pick_up_description = Array[String](["Picked up Holy water,", " (shotgun)."])

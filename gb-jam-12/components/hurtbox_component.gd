@@ -26,7 +26,7 @@ func on_area_entered(other_area: Area2D):
 	deal_damage(hitbox_component.damage);
 	
 	#if projectile has durability reduce it
-	if hitbox_component.get_parent() is WallTrapProjectile || hitbox_component.get_parent() is HandgunBullet:
+	if hitbox_component.get_parent() is WallTrapProjectile || hitbox_component.get_parent() is Bullet:
 		hitbox_component.get_parent().queue_free();
 
 

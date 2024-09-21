@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://de2plpxa71rpn"]
+[gd_scene load_steps=7 format=3 uid="uid://ck6cfru15rxqg"]
 
-[ext_resource type="Script" path="res://components/hitbox_component.gd" id="1_kqshm"]
-[ext_resource type="Script" path="res://scenes/projectiles/bullet.gd" id="1_rtpab"]
-[ext_resource type="Texture2D" uid="uid://bi3w7b3u661l" path="res://assets/handgun_bullet.png" id="3_8k1ts"]
-[ext_resource type="Script" path="res://components/wall_kills_component.gd" id="3_unb45"]
+[ext_resource type="Script" path="res://scenes/projectiles/bullet.gd" id="1_qr85l"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_6mf7y"]
+[ext_resource type="Script" path="res://components/wall_kills_component.gd" id="3_0ihcg"]
+[ext_resource type="Texture2D" uid="uid://dug0yo363t51" path="res://assets/submachine_ammo_16x16.png" id="4_15hay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wujs6"]
 size = Vector2(8, 8)
@@ -11,23 +11,23 @@ size = Vector2(8, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s3pk"]
 size = Vector2(4, 4)
 
-[node name="Bullet" type="Node2D"]
+[node name="ShotgunBullet" type="Node2D"]
 z_index = 10
-script = ExtResource("1_rtpab")
+script = ExtResource("1_qr85l")
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("1_kqshm")
+script = ExtResource("2_6mf7y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_wujs6")
 
 [node name="WallKillsComponent" type="Area2D" parent="."]
-script = ExtResource("3_unb45")
+script = ExtResource("3_0ihcg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallKillsComponent"]
 shape = SubResource("RectangleShape2D_6s3pk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_8k1ts")
+texture = ExtResource("4_15hay")

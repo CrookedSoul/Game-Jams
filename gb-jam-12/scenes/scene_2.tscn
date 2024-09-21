@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://nmrsvul811qq"]
+[gd_scene load_steps=18 format=4 uid="uid://nmrsvul811qq"]
 
 [ext_resource type="PackedScene" uid="uid://fk70sfm00807" path="res://scenes/objects/player.tscn" id="1_ntbo3"]
 [ext_resource type="PackedScene" uid="uid://cb4jw7krpt8t3" path="res://game_camera/game_camera.tscn" id="2_pd4by"]
@@ -8,14 +8,20 @@
 [ext_resource type="PackedScene" uid="uid://dj005qjo54qga" path="res://scenes/objects/floor_trap_object.tscn" id="5_w6b6d"]
 [ext_resource type="PackedScene" uid="uid://05pvftkxjxkh" path="res://scenes/objects/door_object.tscn" id="6_1uhto"]
 [ext_resource type="PackedScene" uid="uid://dmhpf83mny4xo" path="res://scenes/objects/spawner_trap.tscn" id="6_ci3th"]
+[ext_resource type="PackedScene" uid="uid://dww1ic4f2hvkp" path="res://scenes/objects/item_drawer_object.tscn" id="6_ogdqn"]
 [ext_resource type="PackedScene" uid="uid://bmmn5h2uyjv6j" path="res://scenes/objects/mob_spawner.tscn" id="6_ps6p2"]
 [ext_resource type="PackedScene" uid="uid://xpyego1s8hai" path="res://scenes/objects/ghost_enemy.tscn" id="7_ddkyu"]
 [ext_resource type="PackedScene" uid="uid://c5xwl5bdnk38j" path="res://scenes/objects/switch_object.tscn" id="7_gpnfg"]
+[ext_resource type="Resource" uid="uid://fw7rfuw04204" path="res://resources/items/apple.tres" id="7_kv7eg"]
+[ext_resource type="PackedScene" uid="uid://y2nxi2gchher" path="res://scenes/objects/bat_enemy.tscn" id="7_sahew"]
+[ext_resource type="Resource" uid="uid://dn3bj2cvb3ac4" path="res://resources/items/submachine.tres" id="11_x7yf0"]
+[ext_resource type="Resource" uid="uid://cxrmgiyjrgbmr" path="res://resources/items/submachine_ammo.tres" id="12_gxk2v"]
+[ext_resource type="PackedScene" uid="uid://gbn8675dflrl" path="res://scenes/objects/fake_wall_object.tscn" id="14_1pyfq"]
 
 [node name="Scene2" type="Node2D"]
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_ntbo3")]
-position = Vector2(51, 200)
+position = Vector2(51, 213)
 
 [node name="GameCamera" parent="." instance=ExtResource("2_pd4by")]
 limit_left = 0
@@ -34,33 +40,162 @@ tile_set = ExtResource("3_asgtq")
 
 [node name="WallLayer" type="TileMapLayer" parent="." groups=["wall"]]
 z_index = 2
-tile_map_data = PackedByteArray("AAAAAA4AAgAAAAUAAAABAA4AAgABAAUAAAACAA4AAgABAAUAAAADAA4AAgABAAUAAAAEAA4AAgABAAUAAAAFAA4AAgABAAUAAAAGAA4AAgABAAUAAAAHAA4AAgABAAUAAAAIAA4AAgABAAUAAAAJAA4AAgABAAUAAAAKAA4AAgABAAUAAAALAA4AAgABAAUAAAAMAA4AAgACAAUAAAAMAA0AAgACAAQAAAAMAAwAAgACAAQAAAAMAAsAAgACAAQAAAAMAAoAAgACAAQAAAAMAAkAAgACAAQAAAAMAAgAAgACAAQAAAAMAAcAAgACAAQAAAAMAAYAAgACAAQAAAAMAAUAAgACAAQAAAAMAAQAAgACAAQAAAAMAAMAAgACAAQAAAAMAAIAAgACAAQAAAAMAAEAAgACAAQAAAAMAAAAAgACAAQAAAAMAP//AgACAAQAAAAMAP7/AgACAAQAAAAMAP3/AgACAAQAAAAMAPz/AgACAAQAAAAMAPv/AgACAAQAAAAMAPr/AgACAAQAAAAMAPn/AgACAAQAAAAMAPj/AgACAAQAAAAMAPf/AgACAAQAAAAMAPb/AgACAAQAAAAMAPX/AgACAAQAAAAMAPT/AgACAAQAAAAMAPP/AgACAAQAAAAMAPL/AgACAAQAAAAMAPH/AgACAAQAAAAMAPD/AgACAAQAAAAMAO//AgACAAQAAAAMAO7/AgACAAQAAAAMAO3/AgACAAMAAAALAO3/AgABAAMAAAAKAO3/AgABAAMAAAAJAO3/AgABAAMAAAAIAO3/AgABAAMAAAAHAO3/AgABAAMAAAAFAO3/AgABAAMAAAAEAO3/AgABAAMAAAADAO3/AgABAAMAAAACAO3/AgABAAMAAAABAO3/AgABAAMAAAAAAO3/AgAAAAMAAAAAAO7/AgAAAAQAAAAAAO//AgAAAAQAAAAAAPD/AgAAAAQAAAAAAPH/AgAAAAQAAAAAAPL/AgAAAAQAAAAAAPP/AgAAAAQAAAAAAPT/AgAAAAQAAAAAAPX/AgAAAAQAAAAAAPb/AgAAAAQAAAAAAPf/AgAAAAQAAAAAAPj/AgAAAAQAAAAAAPn/AgAAAAQAAAAAAPr/AgAAAAQAAAAAAPv/AgAAAAQAAAAAAPz/AgAAAAQAAAAAAP3/AgAAAAQAAAAAAP7/AgAAAAQAAAAAAP//AgAAAAQAAAAAAAAAAgAAAAQAAAAAAAEAAgAAAAQAAAAAAAIAAgAAAAQAAAAAAAMAAgAAAAQAAAAAAAQAAgAAAAQAAAAAAAUAAgAAAAQAAAAAAAYAAgAAAAQAAAAAAAcAAgAAAAQAAAAAAAgAAgAAAAQAAAAAAAkAAgAAAAQAAAAAAAoAAgAAAAQAAAAAAAsAAgAAAAQAAAAAAAwAAgAAAAQAAAAAAA0AAgAAAAQAAAABAO7/AgADAAIAAAACAO7/AgADAAIAAAADAO7/AgADAAIAAAAEAO7/AgADAAEAAAAFAO7/AgADAAEAAAAHAO7/AgADAAIAAAAIAO7/AgADAAEAAAAJAO7/AgADAAIAAAAKAO7/AgADAAIAAAALAO7/AgADAAEAAAAGAAsAAgADAAIAAAAHAAsAAgADAAIAAAAIAAoAAgABAAQAAAAJAAoAAgACAAMAAAALAAEAAgADAAIAAAAHAA0AAgABAAMAAAAIAA0AAgABAAMAAAAJAA0AAgABAAMAAAAKAA0AAgABAAMAAAALAA0AAgABAAQAAAAGAA0AAgABAAMAAAALAAwAAgAAAAMAAAAJAAQAAgACAAQAAAAKAAMAAgACAAUAAAAKAAIAAgACAAQAAAAKAAEAAgACAAQAAAALAAAAAgABAAMAAAAKAAAAAgABAAMAAAAJAAAAAgAAAAMAAAAJAAEAAgAAAAQAAAAJAAIAAgAAAAQAAAAJAAMAAgABAAQAAAAIAAQAAgAAAAQAAAAIAAUAAgAAAAQAAAAIAAYAAgAAAAQAAAAIAAcAAgAAAAQAAAAIAAgAAgABAAQAAAAIAAkAAgACAAQAAAAIAAMAAgAAAAMAAAAHAAoAAgABAAQAAAAGAAoAAgABAAQAAAAHAAkAAgABAAQAAAAGAAkAAgABAAQAAAAHAAgAAgABAAMAAAAGAAgAAgABAAMAAAAFAAsAAgADAAIAAAAEAAsAAgADAAEAAAAEAAoAAgABAAQAAAAEAAkAAgABAAQAAAAEAAgAAgABAAMAAAAFAAgAAgABAAMAAAAFAAkAAgABAAQAAAAFAAoAAgABAAQAAAADAAsAAgADAAEAAAACAAsAAgADAAEAAAACAAoAAgAAAAQAAAACAAkAAgAAAAQAAAACAAgAAgAAAAMAAAADAAgAAgABAAMAAAADAAkAAgABAAQAAAADAAoAAgABAAQAAAAIAAsAAgADAAIAAAAJAAsAAgADAAIAAAAFAA0AAgABAAMAAAAEAA0AAgAAAAMAAAAJAAYAAgACAAQAAAAJAAUAAgACAAQAAAALAAoAAgADAAIAAAALAAkAAgAAAAMAAAALAAcAAgADAAIAAAALAAYAAgAAAAMAAAAJAAgAAgADAAIAAAAJAAcAAgACAAQAAAA=")
+tile_map_data = PackedByteArray("AAAAAA4AAgAAAAUAAAABAA4AAgABAAUAAAACAA4AAgABAAUAAAADAA4AAgABAAUAAAAEAA4AAgABAAUAAAAFAA4AAgABAAUAAAAGAA4AAgABAAUAAAAHAA4AAgABAAUAAAAIAA4AAgABAAUAAAAJAA4AAgABAAUAAAAKAA4AAgABAAUAAAALAA4AAgABAAUAAAAMAA4AAgACAAUAAAAMAA0AAgACAAQAAAAMAAwAAgACAAQAAAAMAAsAAgACAAQAAAAMAAoAAgACAAQAAAAMAAkAAgACAAQAAAAMAAgAAgACAAQAAAAMAAcAAgACAAQAAAAMAAYAAgACAAQAAAAMAAUAAgACAAQAAAAMAAQAAgACAAQAAAAMAAMAAgACAAQAAAAMAAIAAgACAAQAAAAMAAEAAgACAAQAAAAMAAAAAgACAAQAAAAMAP//AgACAAQAAAAMAP7/AgACAAQAAAAMAP3/AgACAAQAAAAMAPz/AgACAAQAAAAMAPv/AgACAAQAAAAMAPr/AgACAAQAAAAMAPn/AgACAAQAAAAMAPj/AgACAAQAAAAMAPf/AgACAAQAAAAMAPb/AgACAAQAAAAMAPX/AgACAAQAAAAMAPT/AgACAAQAAAAMAPP/AgACAAQAAAAMAPL/AgACAAQAAAAMAPH/AgACAAQAAAAMAPD/AgACAAQAAAAMAO//AgACAAQAAAAMAO7/AgACAAQAAAAMAO3/AgACAAMAAAALAO3/AgABAAMAAAAKAO3/AgABAAMAAAAJAO3/AgABAAMAAAAIAO3/AgABAAMAAAAHAO3/AgABAAMAAAAFAO3/AgABAAMAAAAEAO3/AgABAAMAAAADAO3/AgABAAMAAAACAO3/AgABAAMAAAABAO3/AgABAAMAAAAAAO3/AgAAAAMAAAAAAO7/AgAAAAQAAAAAAO//AgAAAAQAAAAAAPD/AgAAAAQAAAAAAPH/AgAAAAQAAAAAAPL/AgAAAAQAAAAAAPP/AgAAAAQAAAAAAPT/AgAAAAQAAAAAAPX/AgAAAAQAAAAAAPb/AgAAAAQAAAAAAPf/AgAAAAQAAAAAAPj/AgAAAAQAAAAAAPn/AgAAAAQAAAAAAPr/AgAAAAQAAAAAAPv/AgAAAAQAAAAAAPz/AgAAAAQAAAAAAP3/AgAAAAQAAAAAAP7/AgAAAAQAAAAAAP//AgAAAAQAAAAAAAAAAgAAAAQAAAAAAAEAAgAAAAQAAAAAAAIAAgAAAAQAAAAAAAMAAgAAAAQAAAAAAAQAAgAAAAQAAAAAAAUAAgAAAAQAAAAAAAYAAgAAAAQAAAAAAAcAAgAAAAQAAAAAAAgAAgAAAAQAAAAAAAkAAgAAAAQAAAAAAAoAAgAAAAQAAAAAAAsAAgAAAAQAAAAAAAwAAgAAAAQAAAAAAA0AAgAAAAQAAAABAO7/AgADAAIAAAACAO7/AgADAAIAAAADAO7/AgADAAIAAAAEAO7/AgADAAEAAAAFAO7/AgADAAEAAAAHAO7/AgADAAIAAAAIAO7/AgADAAEAAAAJAO7/AgADAAIAAAAKAO7/AgADAAIAAAALAO7/AgADAAEAAAAGAAsAAgADAAIAAAAHAAsAAgADAAIAAAAIAAoAAgABAAQAAAAJAAoAAgACAAMAAAALAAEAAgADAAIAAAAHAA0AAgABAAMAAAAIAA0AAgABAAMAAAAJAA0AAgABAAMAAAAKAA0AAgABAAMAAAALAA0AAgABAAQAAAAGAA0AAgABAAMAAAALAAwAAgAAAAMAAAAJAAQAAgACAAQAAAAKAAEAAgACAAQAAAALAAAAAgABAAQAAAAKAAAAAgABAAQAAAAJAAAAAgAAAAQAAAAJAAEAAgAAAAQAAAAJAAIAAgAAAAQAAAAJAAMAAgABAAQAAAAIAAQAAgAAAAQAAAAIAAUAAgAAAAQAAAAIAAYAAgAAAAQAAAAIAAcAAgAAAAQAAAAIAAgAAgABAAQAAAAIAAkAAgACAAQAAAAIAAMAAgAAAAMAAAAHAAoAAgABAAQAAAAGAAoAAgABAAQAAAAHAAkAAgABAAQAAAAGAAkAAgABAAQAAAAHAAgAAgABAAMAAAAGAAgAAgABAAMAAAAFAAsAAgADAAIAAAAEAAsAAgADAAEAAAAEAAoAAgABAAQAAAAEAAkAAgABAAQAAAAEAAgAAgABAAMAAAAFAAgAAgABAAMAAAAFAAkAAgABAAQAAAAFAAoAAgABAAQAAAADAAsAAgADAAEAAAACAAsAAgADAAEAAAACAAoAAgAAAAQAAAACAAkAAgAAAAQAAAACAAgAAgAAAAMAAAADAAgAAgABAAMAAAADAAkAAgABAAQAAAADAAoAAgABAAQAAAAIAAsAAgADAAIAAAAJAAsAAgADAAIAAAAFAA0AAgABAAMAAAAEAA0AAgAAAAMAAAAJAAYAAgACAAQAAAAJAAUAAgACAAQAAAALAAoAAgADAAIAAAALAAkAAgAAAAMAAAALAAcAAgADAAIAAAALAAYAAgAAAAMAAAAJAAgAAgADAAIAAAAJAAcAAgACAAQAAAAKAAIAAgACAAQAAAAKAAMAAgACAAUAAAACAPz/AgADAAIAAAADAPz/AgADAAIAAAAEAPz/AgADAAEAAAAFAPz/AgADAAIAAAAIAPz/AgADAAEAAAAHAPz/AgADAAIAAAAJAPz/AgADAAEAAAAKAPz/AgADAAIAAAACAPv/AgAAAAQAAAADAPv/AgABAAQAAAAEAPv/AgABAAMAAAAFAPv/AgACAAMAAAAHAPv/AgAAAAMAAAAIAPv/AgABAAMAAAAJAPv/AgABAAQAAAABAAAAAgADAAIAAAACAAAAAgADAAIAAAADAAAAAgADAAIAAAAEAAAAAgADAAIAAAAIAAAAAgADAAIAAAAHAAAAAgADAAIAAAAGAAAAAgADAAIAAAAGAP//AgAAAAMAAAAHAP//AgABAAMAAAAIAP//AgABAAMAAAAJAP//AgABAAMAAAAKAP//AgABAAMAAAALAP//AgABAAMAAAAEAP//AgACAAMAAAADAP//AgABAAMAAAACAP//AgABAAMAAAABAP//AgABAAMAAAACAPn/AgAAAAQAAAACAPj/AgAAAAQAAAABAPf/AgADAAIAAAACAPf/AgAAAAQAAAACAPb/AgABAAMAAAABAPb/AgABAAMAAAADAPf/AgACAAQAAAADAPj/AgACAAQAAAADAPn/AgACAAQAAAADAPr/AgACAAQAAAADAPb/AgACAAMAAAACAPr/AgAAAAQAAAAJAPr/AgAAAAQAAAAJAPn/AgAAAAQAAAAJAPj/AgAAAAQAAAAJAPb/AgAAAAMAAAAJAPf/AgAAAAQAAAAKAPb/AgABAAMAAAALAPb/AgABAAMAAAALAPf/AgADAAIAAAAKAPf/AgACAAQAAAAKAPj/AgACAAQAAAAKAPn/AgACAAQAAAAKAPr/AgACAAQAAAAKAPv/AgACAAQAAAA=")
 tile_set = ExtResource("3_asgtq")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Spawners" type="Node2D" parent="."]
 
-[node name="FootstepsObject" parent="Node2D" instance=ExtResource("4_reeel")]
+[node name="SpawnerTrap" parent="Spawners" node_paths=PackedStringArray("spawners_connected") instance=ExtResource("6_ci3th")]
+position = Vector2(138, 200)
+spawners_connected = [NodePath("MobSpawner"), NodePath("MobSpawner2")]
+
+[node name="MobSpawner" parent="Spawners/SpawnerTrap" instance=ExtResource("6_ps6p2")]
+position = Vector2(-74, 0)
+mob_scene = ExtResource("7_ddkyu")
+
+[node name="MobSpawner2" parent="Spawners/SpawnerTrap" instance=ExtResource("6_ps6p2")]
+position = Vector2(30, 1)
+mob_scene = ExtResource("7_ddkyu")
+
+[node name="SpawnerTrap2" parent="Spawners" node_paths=PackedStringArray("spawners_connected") instance=ExtResource("6_ci3th")]
+position = Vector2(88, -24)
+spawners_connected = [null, null, NodePath("MobSpawner4"), NodePath("MobSpawner3")]
+
+[node name="MobSpawner3" parent="Spawners/SpawnerTrap2" instance=ExtResource("6_ps6p2")]
+position = Vector2(-64, 0)
+mob_scene = ExtResource("7_ddkyu")
+
+[node name="MobSpawner4" parent="Spawners/SpawnerTrap2" instance=ExtResource("6_ps6p2")]
+position = Vector2(94, 1)
+mob_scene = ExtResource("7_ddkyu")
+
+[node name="SpawnerTrap3" parent="Spawners" node_paths=PackedStringArray("spawners_connected") instance=ExtResource("6_ci3th")]
+position = Vector2(104, -151)
+scale = Vector2(4, 1)
+spawners_connected = [NodePath("MobSpawner"), NodePath("MobSpawner2"), NodePath("MobSpawner3"), NodePath("MobSpawner4"), NodePath("MobSpawner5"), NodePath("MobSpawner6"), NodePath("MobSpawner7"), NodePath("MobSpawner8"), NodePath("MobSpawner10"), NodePath("MobSpawner9")]
+
+[node name="MobSpawner" parent="Spawners/SpawnerTrap3" instance=ExtResource("6_ps6p2")]
+position = Vector2(-17.75, -109)
+mob_scene = ExtResource("7_sahew")
+
+[node name="MobSpawner2" parent="Spawners/SpawnerTrap3" instance=ExtResource("6_ps6p2")]
+position = Vector2(-10.25, -110)
+mob_scene = ExtResource("7_sahew")
+
+[node name="MobSpawner3" parent="Spawners/SpawnerTrap3" instance=ExtResource("6_ps6p2")]
+position = Vector2(-1, -111)
+mob_scene = ExtResource("7_sahew")
+
+[node name="MobSpawner4" parent="Spawners/SpawnerTrap3" instance=ExtResource("6_ps6p2")]
+position = Vector2(8.75, -112)
+mob_scene = ExtResource("7_sahew")
+
+[node name="MobSpawner5" parent="Spawners/SpawnerTrap3" instance=ExtResource("6_ps6p2")]
+position = Vector2(16.25, -112)
+mob_scene = ExtResource("7_sahew")
+
+[node name="MobSpawner6" parent="Spawners/SpawnerTrap3" instance=ExtResource("6_ps6p2")]
+position = Vector2(-17.75, -75)
+mob_scene = ExtResource("7_sahew")
+
+[node name="MobSpawner7" parent="Spawners/SpawnerTrap3" instance=ExtResource("6_ps6p2")]
+position = Vector2(-1, -79)
+mob_scene = ExtResource("7_sahew")
+
+[node name="MobSpawner8" parent="Spawners/SpawnerTrap3" instance=ExtResource("6_ps6p2")]
+position = Vector2(18.75, -80)
+mob_scene = ExtResource("7_sahew")
+
+[node name="MobSpawner10" parent="Spawners/SpawnerTrap3" instance=ExtResource("6_ps6p2")]
+position = Vector2(-8, -45)
+mob_scene = ExtResource("7_sahew")
+
+[node name="MobSpawner9" parent="Spawners/SpawnerTrap3" instance=ExtResource("6_ps6p2")]
+position = Vector2(7.75, -46)
+mob_scene = ExtResource("7_sahew")
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="FootstepsObject" parent="Objects" instance=ExtResource("4_reeel")]
 position = Vector2(32, 207)
 rotation = 0.776672
 
-[node name="DoorObject" parent="Node2D" instance=ExtResource("6_1uhto")]
+[node name="DoorObject" parent="Objects" instance=ExtResource("6_1uhto")]
 z_index = 5
 position = Vector2(104, -295)
 collision_mask = 0
 
+[node name="ItemDrawerObject2" parent="Objects" instance=ExtResource("6_ogdqn")]
+position = Vector2(119, 119)
+item_data = ExtResource("7_kv7eg")
+
+[node name="ItemDrawerObject3" parent="Objects" instance=ExtResource("6_ogdqn")]
+position = Vector2(184, -133)
+item_data = ExtResource("11_x7yf0")
+
+[node name="ItemDrawerObject4" parent="Objects" instance=ExtResource("6_ogdqn")]
+position = Vector2(73, -90)
+item_data = ExtResource("12_gxk2v")
+
+[node name="ItemDrawerObject5" parent="Objects" instance=ExtResource("6_ogdqn")]
+position = Vector2(136, -90)
+item_data = ExtResource("12_gxk2v")
+
+[node name="ItemDrawerObject8" parent="Objects" instance=ExtResource("6_ogdqn")]
+position = Vector2(183, -276)
+item_data = ExtResource("12_gxk2v")
+
+[node name="ItemDrawerObject9" parent="Objects" instance=ExtResource("6_ogdqn")]
+position = Vector2(25, -275)
+item_data = ExtResource("12_gxk2v")
+
+[node name="ItemDrawerObject10" parent="Objects" instance=ExtResource("6_ogdqn")]
+position = Vector2(79, -275)
+item_data = ExtResource("7_kv7eg")
+
+[node name="ItemDrawerObject6" parent="Objects" instance=ExtResource("6_ogdqn")]
+position = Vector2(184, -170)
+item_data = ExtResource("12_gxk2v")
+
+[node name="ItemDrawerObject7" parent="Objects" instance=ExtResource("6_ogdqn")]
+position = Vector2(25, -170)
+item_data = ExtResource("12_gxk2v")
+
+[node name="SwitchObject" parent="Objects" node_paths=PackedStringArray("objects_to_switch") instance=ExtResource("7_gpnfg")]
+position = Vector2(184, 26)
+objects_to_switch = [NodePath("WallTrapObject"), NodePath("WallTrapObject3"), NodePath("WallTrapObject4"), NodePath("WallTrapObject2")]
+
+[node name="WallTrapObject" parent="Objects/SwitchObject" instance=ExtResource("5_ekdqu")]
+position = Vector2(-160, 78)
+is_fast = true
+
+[node name="WallTrapObject5" parent="Objects/SwitchObject" instance=ExtResource("5_ekdqu")]
+position = Vector2(-16, 45)
+rotation = 1.5708
+is_ultra_slow = true
+
+[node name="WallTrapObject3" parent="Objects/SwitchObject" instance=ExtResource("5_ekdqu")]
+position = Vector2(-160, 30)
+is_fast = true
+
+[node name="WallTrapObject4" parent="Objects/SwitchObject" instance=ExtResource("5_ekdqu")]
+position = Vector2(-47, -3)
+rotation = 3.14159
+is_fast = true
+
+[node name="WallTrapObject2" parent="Objects/SwitchObject" instance=ExtResource("5_ekdqu")]
+position = Vector2(-63, 45)
+rotation = 3.14159
+is_fast = true
+
+[node name="SwitchObject2" parent="Objects" node_paths=PackedStringArray("objects_to_switch") instance=ExtResource("7_gpnfg")]
+position = Vector2(25, -133)
+objects_to_switch = [NodePath("FakeWallObject")]
+
+[node name="FakeWallObject" parent="Objects/SwitchObject2" instance=ExtResource("14_1pyfq")]
+position = Vector2(79, 77)
+
 [node name="Traps" type="Node2D" parent="." groups=["foreground_layer"]]
-
-[node name="MobSpawner" parent="Traps" instance=ExtResource("6_ps6p2")]
-position = Vector2(36, 200)
-mob_scene = ExtResource("7_ddkyu")
-
-[node name="MobSpawner2" parent="Traps" instance=ExtResource("6_ps6p2")]
-position = Vector2(168, 201)
-mob_scene = ExtResource("7_ddkyu")
-
-[node name="SpawnerTrap" parent="Traps" node_paths=PackedStringArray("spawners_connected") instance=ExtResource("6_ci3th")]
-position = Vector2(120, 200)
-spawners_connected = [NodePath("../MobSpawner"), NodePath("../MobSpawner2")]
 
 [node name="FloorTrapObject" parent="Traps" instance=ExtResource("5_w6b6d")]
 position = Vector2(38, 88)
@@ -118,30 +253,3 @@ position = Vector2(110, 88)
 
 [node name="FloorTrapObject4" parent="Traps" instance=ExtResource("5_w6b6d")]
 position = Vector2(98, 88)
-
-[node name="WallTrapObject" parent="Traps" instance=ExtResource("5_ekdqu")]
-position = Vector2(24, 104)
-is_fast = true
-
-[node name="WallTrapObject5" parent="Traps" instance=ExtResource("5_ekdqu")]
-position = Vector2(168, 71)
-rotation = 1.5708
-is_ultra_slow = true
-
-[node name="WallTrapObject3" parent="Traps" instance=ExtResource("5_ekdqu")]
-position = Vector2(24, 56)
-is_fast = true
-
-[node name="WallTrapObject4" parent="Traps" instance=ExtResource("5_ekdqu")]
-position = Vector2(137, 23)
-rotation = 3.14159
-is_fast = true
-
-[node name="WallTrapObject2" parent="Traps" instance=ExtResource("5_ekdqu")]
-position = Vector2(121, 71)
-rotation = 3.14159
-is_fast = true
-
-[node name="SwitchObject" parent="Traps" node_paths=PackedStringArray("objects_to_switch") instance=ExtResource("7_gpnfg")]
-position = Vector2(184, 26)
-objects_to_switch = [NodePath("../WallTrapObject"), NodePath("../WallTrapObject3"), NodePath("../WallTrapObject4"), NodePath("../WallTrapObject2")]

@@ -12,6 +12,13 @@ extends Node2D
 @export var shotgun_ammo : int
 @export var submachine_ammo : int
 
+var checkpoint_hp : int
+var checkpoint_apples : int
+var checkpoint_handgun : int
+var checkpoint_shotgun : int
+var checkpoint_submachine: int
+var checkpoint_items : Array[ItemData]
+
 var current_item : ItemData
 
 var current_level = 0
@@ -19,7 +26,6 @@ var current_hp = 0
 var max_hp = 3
 
 var has_weapon = false
-var has_ammo = handgun_ammo > 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -82,23 +88,20 @@ func on_take_item(item: ItemData):
 	
 
 func can_and_use_ammo():
-	if PlayerStats.current_item.id == "water_gun":
-		if handgun_ammo > 0:
-			handgun_ammo = handgun_ammo - 1
+	if PlayerStats.current_item.id == "water_gun" && handgun_ammo > 0:
+		handgun_ammo = handgun_ammo - 1
 		GameEvents.emit_ammo_changed(handgun_ammo)
-		return handgun_ammo > 0
-	elif PlayerStats.current_item.id == "shotgun":
-		if shotgun_ammo > 0:
-			shotgun_ammo = shotgun_ammo - 1
+		return true
+	elif PlayerStats.current_item.id == "shotgun" && shotgun_ammo > 0:
+		shotgun_ammo = shotgun_ammo - 1
 		GameEvents.emit_ammo_changed(shotgun_ammo)
-		return handgun_ammo > 0
-	elif PlayerStats.current_item.id == "submachine":
-		if submachine_ammo > 0:
-			submachine_ammo = submachine_ammo - 1
+		return true
+	elif PlayerStats.current_item.id == "submachine" && submachine_ammo > 0:
+		submachine_ammo = submachine_ammo - 1
 		GameEvents.emit_ammo_changed(submachine_ammo)
-		return handgun_ammo > 0
-	elif PlayerStats.current_item.id == "apple":
-		if apples_count > 0 && current_hp < max_hp:
-			apples_count = apples_count - 1
+		return true
+	elif PlayerStats.current_item.id == "apple" && apples_count > 0 && current_hp < max_hp:
+		apples_count = apples_count - 1
 		GameEvents.emit_ammo_changed(apples_count)
-		return apples_count > 0
+		return true
+	return false
