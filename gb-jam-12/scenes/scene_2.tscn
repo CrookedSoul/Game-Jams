@@ -89,6 +89,30 @@ position = Vector2(113, 40)
 [node name="FloorTrapObject9" parent="Traps" instance=ExtResource("5_w6b6d")]
 position = Vector2(137, 40)
 
+[node name="FloorTrapObject10" parent="Traps" instance=ExtResource("5_w6b6d")]
+position = Vector2(122, 88)
+
+[node name="FloorTrapObject13" parent="Traps" instance=ExtResource("5_w6b6d")]
+position = Vector2(26, 88)
+
+[node name="FloorTrapObject14" parent="Traps" instance=ExtResource("5_w6b6d")]
+position = Vector2(91, 56)
+
+[node name="FloorTrapObject15" parent="Traps" instance=ExtResource("5_w6b6d")]
+position = Vector2(103, 56)
+
+[node name="FloorTrapObject18" parent="Traps" instance=ExtResource("5_w6b6d")]
+position = Vector2(26, 72)
+
+[node name="FloorTrapObject19" parent="Traps" instance=ExtResource("5_w6b6d")]
+position = Vector2(38, 72)
+
+[node name="FloorTrapObject16" parent="Traps" instance=ExtResource("5_w6b6d")]
+position = Vector2(115, 56)
+
+[node name="FloorTrapObject17" parent="Traps" instance=ExtResource("5_w6b6d")]
+position = Vector2(115, 56)
+
 [node name="FloorTrapObject3" parent="Traps" instance=ExtResource("5_w6b6d")]
 position = Vector2(110, 88)
 
