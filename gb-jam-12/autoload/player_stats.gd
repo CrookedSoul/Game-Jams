@@ -19,7 +19,7 @@ var current_hp = 0
 var max_hp = 3
 
 var has_weapon = false
-var has_ammo = false
+var has_ammo = handgun_ammo > 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -71,7 +71,6 @@ func on_take_item(item: ItemData):
 		handgun_ammo = handgun_ammo + 15
 		if current_item != null && current_item.id == "water_gun":
 			GameEvents.emit_ammo_changed(handgun_ammo)
-			has_ammo = true
 	elif item.id == "shotgun_ammo":
 		shotgun_ammo = shotgun_ammo + 6
 		if current_item != null && current_item.id == "shotgun":

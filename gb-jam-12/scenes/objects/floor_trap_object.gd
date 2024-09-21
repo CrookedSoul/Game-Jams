@@ -1,5 +1,4 @@
 extends Node2D
-class_name FloorTrapObject
 
 @onready var animation_player = $AnimationPlayer
 

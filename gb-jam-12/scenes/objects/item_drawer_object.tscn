@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dww1ic4f2hvkp"]
 
-[ext_resource type="Script" path="res://scenes/objects/ItemDrawerObject.gd" id="1_1l4ql"]
+[ext_resource type="Script" path="res://scenes/objects/item_drawer_object.gd" id="1_1l4ql"]
 [ext_resource type="Texture2D" uid="uid://drj8er8ljqxkl" path="res://assets/furniture_house_16x16.png" id="3_k2nrl"]
 [ext_resource type="PackedScene" uid="uid://n5ikjpovrmtn" path="res://components/interactable_component.tscn" id="4_48bjt"]
 

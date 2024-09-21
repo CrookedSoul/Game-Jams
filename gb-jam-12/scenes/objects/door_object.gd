@@ -16,7 +16,7 @@ func _ready() -> void:
 func on_interaction():
 	if PlayerStats.current_level == 1 && !PlayerStats.has_weapon:
 		GameEvents.emit_start_dialog(dialog_text_no_weapon);	
-	elif PlayerStats.current_level == 1 && !PlayerStats.has_ammo:
+	elif PlayerStats.current_level == 1 && !PlayerStats.handgun_ammo > 0:
 		GameEvents.emit_start_dialog(dialog_text_no_ammo);
 	else:
 		GameEvents.emit_level_change(PlayerStats.current_level + 1)

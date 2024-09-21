@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmhpf83mny4xo"]
+
+[ext_resource type="Script" path="res://scenes/objects/spawner_trap.gd" id="1_rr7wn"]
+[ext_resource type="PackedScene" uid="uid://mtym2ohfb807" path="res://components/stepped_on_component.tscn" id="2_c7uux"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijktx"]
+
+[node name="SpawnerTrap" type="Node2D"]
+z_index = 5
+script = ExtResource("1_rr7wn")
+
+[node name="SteppedOnComponent" parent="." instance=ExtResource("2_c7uux")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SteppedOnComponent"]
+shape = SubResource("RectangleShape2D_ijktx")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5xwl5bdnk38j"]
+
+[ext_resource type="Script" path="res://scenes/objects/switch_object.gd" id="1_meh04"]
+[ext_resource type="Texture2D" uid="uid://drj8er8ljqxkl" path="res://assets/furniture_house_16x16.png" id="1_wj1l6"]
+[ext_resource type="PackedScene" uid="uid://n5ikjpovrmtn" path="res://components/interactable_component.tscn" id="2_hsp48"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpqht"]
+
+[node name="SwitchObject" type="Node2D"]
+z_index = 9
+script = ExtResource("1_meh04")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wj1l6")
+hframes = 8
+vframes = 2
+frame = 8
+
+[node name="InteractableComponent" parent="." instance=ExtResource("2_hsp48")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+shape = SubResource("RectangleShape2D_wpqht")

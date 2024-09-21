@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://gbn8675dflrl"]
+
+[ext_resource type="Texture2D" uid="uid://c04khe64c1ys8" path="res://assets/house_tiles_16x16.png" id="1_aesdk"]
+[ext_resource type="Script" path="res://scenes/objects/fake_wall_object.gd" id="1_eua0q"]
+[ext_resource type="PackedScene" uid="uid://n5ikjpovrmtn" path="res://components/interactable_component.tscn" id="2_radm6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrc7c"]
+size = Vector2(16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy1c0"]
+size = Vector2(20, 23)
+
+[node name="FakeWallObject" type="StaticBody2D"]
+script = ExtResource("1_eua0q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aesdk")
+hframes = 10
+vframes = 9
+frame = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_qrc7c")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("2_radm6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_xy1c0")

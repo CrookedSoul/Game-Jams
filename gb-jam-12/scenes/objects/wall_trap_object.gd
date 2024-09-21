@@ -1,7 +1,9 @@
 extends StaticBody2D
+class_name WallTrapObject
 
 @export var wall_trap_projectil : PackedScene
 @export var is_fast : bool
+@export var is_ultra_slow : bool
 
 @onready var animation_player = $AnimationPlayer
 @onready var launch_position = $LaunchPosition
@@ -9,10 +11,12 @@ extends StaticBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var randomFloat = randf_range(0.0, 4.0)
+	var randomFloat = randf_range(0.0, 1.0)
 	await get_tree().create_timer(randomFloat).timeout
 	if is_fast:
 		animation_player.play("fast_spawning")
+	elif is_ultra_slow:
+		animation_player.play("ultra_slow_spawning")
 	else:
 		animation_player.play("slow_spawning")
 
@@ -25,3 +29,8 @@ func shoot_projectile():
 	projectile_instance.global_rotation = global_rotation
 	projectile_instance.global_position = launch_position.global_position
 	
+
+func slow_down():
+	var randomFloat = randf_range(0.0, 1.0)
+	await get_tree().create_timer(randomFloat).timeout
+	animation_player.play("slow_spawning")

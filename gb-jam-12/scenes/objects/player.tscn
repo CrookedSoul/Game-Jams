@@ -129,7 +129,8 @@ _data = {
 "walk_up": SubResource("Animation_y53s0")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yy3r8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtim8"]
+size = Vector2(10.5, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_100va"]
 size = Vector2(10, 15)
@@ -154,7 +155,8 @@ collision_mask = 2
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-shape = SubResource("CircleShape2D_yy3r8")
+position = Vector2(0.75, 0)
+shape = SubResource("RectangleShape2D_gtim8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_100va")
@@ -178,5 +180,9 @@ position = Vector2(13, -14)
 one_shot = true
 
 [node name="ItemChangeTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
