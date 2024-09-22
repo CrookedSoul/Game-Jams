@@ -8,6 +8,8 @@ extends Node
 @export var ammo_label : Label
 @export var equiped_item_icon : TextureRect
 @export var dialog_rich_text_label : RichTextLabel
+@export var main_theme_audio : AudioStreamPlayer
+@export var boss_theme_audio : AudioStreamPlayer
 
 var zero_hp = preload("res://assets/0_hearts_16x16.png")
 var one_hp = preload("res://assets/1_heart_16x16.png")
@@ -19,6 +21,7 @@ var shotgun_icon = preload("res://assets/shotgun_32x16.png")
 var submachine_icon = preload("res://assets/submachine_16x16.png")
 var apple_icon = preload("res://assets/apple_16x16.png")
 
+var scene_0 = preload("res://scenes/start_menu.tscn")
 var scene_1 = preload("res://scenes/scene_1.tscn")
 var scene_2 = preload("res://scenes/scene_2.tscn")
 var scene_3 = preload("res://scenes/scene_3.tscn")
@@ -37,6 +40,9 @@ func _ready() -> void:
 	GameEvents.start_dialog.connect(on_start_dialog)
 	GameEvents.continue_dialog.connect(on_continue_dialog)
 	GameEvents.retry_level.connect(on_retry_level)
+	GameEvents.play_main.connect(on_play_main)
+	GameEvents.play_boss.connect(on_play_boss)
+	GameEvents.game_finish.connect(on_game_finish)
 
 
 func on_set_ui_visibility(visible: bool):
@@ -77,7 +83,7 @@ func change_level():
 		child.queue_free();
 
 	if level_loading == 0:
-		pass # should go to start screen
+		game_view.add_child(scene_0.instantiate())
 	elif level_loading == 1:
 		game_view.add_child(scene_1.instantiate())
 	elif level_loading == 2:
@@ -97,6 +103,7 @@ func on_retry_level():
 	PlayerStats.shotgun_ammo = PlayerStats.checkpoint_shotgun
 	PlayerStats.current_hp = PlayerStats.checkpoint_hp 
 	PlayerStats.weapons = PlayerStats.checkpoint_items 
+	PlayerStats.change_item()
 
 	GameEvents.emit_level_change(PlayerStats.current_level)
 
@@ -157,3 +164,19 @@ func on_continue_dialog():
 		current_dialog_index = 0
 		dialog_margin_container.visible = false
 		GameEvents.dialog_visible = false;
+
+
+func on_play_main():
+	main_theme_audio.play()
+	boss_theme_audio.stop()
+	
+
+func on_play_boss():
+	main_theme_audio.stop()
+	boss_theme_audio.play()
+
+
+func on_game_finish():
+	GameEvents.ui_visible = false
+	ui_margin_container.visible = false
+	on_level_change(0)

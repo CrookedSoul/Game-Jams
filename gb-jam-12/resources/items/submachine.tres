@@ -12,5 +12,5 @@ icon = ExtResource("1_i60yj")
 is_weapon = true
 time_between_shots = 0.25
 bullet_scene = ExtResource("1_6k2iq")
-bullet_damage = 2
+bullet_damage = 1
 pick_up_description = Array[String](["Submachine gun...", "Fast and deadly"])

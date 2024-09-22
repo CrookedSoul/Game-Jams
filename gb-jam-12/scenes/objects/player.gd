@@ -5,11 +5,10 @@ class_name Player
 @onready var animation_player = $AnimationPlayer
 @onready var visuals = $Visuals;
 @onready var sprite = $Visuals/Sprite2D;
-@onready var hurtbox_component = $HurtBoxComponent
 @onready var health_component = $HealthComponent
 @onready var show_interactable_component = $ShowInteractable
 
-@export var user_interface: Node;
+@export var hurtbox_component : Area2D
 var movement_vector;
 var player_can_interact = false
 var can_press_action = true
@@ -24,7 +23,6 @@ var previous_hp = 0
 func _ready():
 	GameEvents.player_can_interact.connect(on_player_can_interact)
 	GameEvents.take_item.connect(on_take_item)
-	#GameEvents.player_damaged.connect(on_player_damaged)
 
 	cooldown_timer.timeout.connect(on_timer_timeout);
 	item_change_timer.timeout.connect(on_item_change_timeout);
@@ -153,7 +151,12 @@ func on_use_item():
 	
 	elif PlayerStats.current_item.id == "apple" && can_press_action:
 		if PlayerStats.can_and_use_ammo():
+			can_press_action = false;
+			cooldown_timer.wait_time = PlayerStats.current_item.time_between_shots;
+			cooldown_timer.start()
 			health_component.heal(1)
+			PlayerStats.current_hp = health_component.current_health
+			
 
 
 

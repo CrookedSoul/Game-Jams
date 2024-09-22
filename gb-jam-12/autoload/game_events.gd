@@ -17,6 +17,9 @@ signal ammo_changed(current_ammo: int)
 signal item_changed(current_item: ItemData)
 signal start_dialog(text: Array[String])
 signal continue_dialog()
+signal play_main()
+signal play_boss()
+signal game_finish()
 
 func emit_player_damaged():
 	player_damaged.emit();
@@ -73,3 +76,14 @@ func emit_item_changed(current_item: ItemData):
 func emit_enemy_killed():
 	# Might need to add a parameter enemy scene but for now just this
 	enemy_killed.emit();
+
+
+func emit_play_main():
+	play_main.emit()
+
+
+func emit_play_boss():
+	play_boss.emit()
+
+func emit_game_finish():
+	game_finish.emit()

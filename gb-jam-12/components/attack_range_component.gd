@@ -8,11 +8,9 @@ var locked_distance;
 
 var range_state: GlobalEnums.RangeState;
 
-func _ready():
-	player = get_tree().get_first_node_in_group("player") as Node2D
-
 
 func _process(delta):
+	player = get_tree().get_first_node_in_group("player") as Node2D
 	if player == null:
 		return;
 	

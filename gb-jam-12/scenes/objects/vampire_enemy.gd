@@ -59,3 +59,6 @@ func finished_attacking():
 
 func finished_dying():
 	queue_free();
+
+
+	

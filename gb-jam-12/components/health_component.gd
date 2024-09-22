@@ -48,7 +48,11 @@ func damage(damage_ammount: float):
 
 	
 func heal(heal_ammount: float):
-	if (current_health == max_health):
+	if is_player:
+		PlayerStats.current_hp = current_health
+		health_changed.emit();
+
+	if current_health == max_health:
 		return
 
 	current_health = current_health + heal_ammount;

@@ -44,6 +44,11 @@ func change_item():
 				current_item = weapons[current_weapon_index]
 			else:
 				current_item = apple_item;
+		else:
+			current_weapon_index = current_weapon_index + 1
+			if current_weapon_index >= 2:
+				current_item = apple_item;
+				current_weapon_index = 0
 
 	if current_item != null:
 		GameEvents.emit_item_changed(current_item);

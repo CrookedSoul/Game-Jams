@@ -9,6 +9,6 @@ id = "apple"
 name = "Apple"
 icon = ExtResource("1_nwggk")
 is_weapon = false
-time_between_shots = 0.0
+time_between_shots = 2.0
 bullet_damage = 0
 pick_up_description = Array[String](["An apple a day,", "Keeps enemies at bay"])

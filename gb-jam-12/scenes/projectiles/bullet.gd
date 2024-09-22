@@ -7,7 +7,6 @@ var speed: int = 250
 var durability: int = 0
 
 @onready var hitbox_component = $HitboxComponent
-@onready var max_range_component = $MaxRangeComponent
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
