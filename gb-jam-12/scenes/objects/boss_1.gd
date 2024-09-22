@@ -36,7 +36,7 @@ func _process(delta):
 	
 	if attack_range_component.range_state == GlobalEnums.RangeState.TOO_CLOSE || attack_range_component.range_state == GlobalEnums.RangeState.IN_RANGE:
 		is_attacking = true;
-		animation_player.play("attacking")
+		animation_player.play("attacking_swing")
 
 	var move_sign = sign(velocity.x)
 	if move_sign != 0:
@@ -50,11 +50,13 @@ func on_health_changed():
 		animation_player.play("dying")
 
 
-func finished_attacking():
-	var mob_instantiated = bat_scene.instantiate()
-	mob_instantiated.global_position = spawn_spot.global_position
-	get_tree().get_first_node_in_group("foreground_layer").add_child(mob_instantiated)
-	is_attacking = false
+func finished_attacking_swing():
+	animation_player.play("attacking_launch")
+
+
+func launch_arm():
+	is_attacking = false;
+	pass
 
 
 func finished_dying():

@@ -153,6 +153,10 @@ item_data = ExtResource("12_gxk2v")
 position = Vector2(79, -275)
 item_data = ExtResource("7_kv7eg")
 
+[node name="ItemDrawerObject11" parent="Objects" instance=ExtResource("6_ogdqn")]
+position = Vector2(79, -275)
+item_data = ExtResource("7_kv7eg")
+
 [node name="ItemDrawerObject6" parent="Objects" instance=ExtResource("6_ogdqn")]
 position = Vector2(184, -170)
 item_data = ExtResource("12_gxk2v")
