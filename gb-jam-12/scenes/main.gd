@@ -22,6 +22,7 @@ var apple_icon = preload("res://assets/apple_16x16.png")
 var scene_1 = preload("res://scenes/scene_1.tscn")
 var scene_2 = preload("res://scenes/scene_2.tscn")
 var scene_3 = preload("res://scenes/scene_3.tscn")
+var scene_4 = preload("res://scenes/scene_3.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -83,6 +84,8 @@ func change_level():
 		game_view.add_child(scene_2.instantiate())
 	elif level_loading == 3:
 		game_view.add_child(scene_3.instantiate())
+	elif level_loading == 4:
+		game_view.add_child(scene_4.instantiate())
 	
 	level_loading = 999
 

@@ -23,6 +23,18 @@ func on_area_exited(other_area: Area2D):
 	#	is_centered = false
 	
 
+func accelerate_to(target_position: Node2D):
+	var owner_node2d = owner as Node2D;
+	if owner_node2d == null:
+		return
+	
+	if target_position == null:
+		return;
+	
+	#	Target position goes first
+	var direction = (target_position.global_position - owner_node2d.global_position).normalized()
+	accelerate_in_direction(direction);
+
 
 func accelerate_to_player():
 	var owner_node2d = owner as Node2D;

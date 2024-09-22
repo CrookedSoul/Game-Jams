@@ -12,5 +12,8 @@ func on_stepped_on():
 	for spawner in spawners_connected:
 		if spawner is MobSpawner:
 			(spawner as MobSpawner).spawn() 
+			
+		if spawner is Boss:
+			(spawner as Boss).start_transforming() 
 	
 	queue_free()

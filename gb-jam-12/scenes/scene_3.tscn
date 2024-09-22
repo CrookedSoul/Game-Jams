@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dbm8dwo0h2oia"]
+[gd_scene load_steps=17 format=4 uid="uid://dbm8dwo0h2oia"]
 
 [ext_resource type="PackedScene" uid="uid://fk70sfm00807" path="res://scenes/objects/player.tscn" id="1_go4u2"]
 [ext_resource type="PackedScene" uid="uid://cb4jw7krpt8t3" path="res://game_camera/game_camera.tscn" id="2_4jxr3"]
@@ -13,12 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://dq0wb8l2yugj3" path="res://scenes/objects/boss_1.tscn" id="14_p6b73"]
 [ext_resource type="PackedScene" uid="uid://c5xwl5bdnk38j" path="res://scenes/objects/switch_object.tscn" id="14_x2byw"]
 [ext_resource type="PackedScene" uid="uid://cv0x2e0bol2w5" path="res://scenes/objects/wall_trap_object.tscn" id="15_ophvl"]
+[ext_resource type="PackedScene" uid="uid://8a1nmg6wkv1b" path="res://scenes/projectiles/boss_arm.tscn" id="15_qoki2"]
 [ext_resource type="PackedScene" uid="uid://gbn8675dflrl" path="res://scenes/objects/fake_wall_object.tscn" id="16_fqp28"]
+[ext_resource type="PackedScene" uid="uid://dj005qjo54qga" path="res://scenes/objects/floor_trap_object.tscn" id="17_hpxn5"]
 
-[node name="Scene2" type="Node2D"]
+[node name="Scene3" type="Node2D"]
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_go4u2")]
-position = Vector2(24, 215)
+position = Vector2(173, -68)
 
 [node name="GameCamera" parent="." instance=ExtResource("2_4jxr3")]
 limit_left = 0
@@ -37,10 +39,10 @@ tile_set = ExtResource("3_w47dg")
 
 [node name="WallLayer" type="TileMapLayer" parent="." groups=["wall"]]
 z_index = 2
-tile_map_data = PackedByteArray("AAAAAA4AAgAAAAUAAAABAA4AAgABAAUAAAACAA4AAgABAAUAAAADAA4AAgABAAUAAAAEAA4AAgABAAUAAAAFAA4AAgABAAUAAAAGAA4AAgABAAUAAAAHAA4AAgABAAUAAAAIAA4AAgABAAUAAAAJAA4AAgABAAUAAAAKAA4AAgABAAUAAAALAA4AAgABAAUAAAAMAA4AAgACAAUAAAAMAA0AAgACAAQAAAAMAAwAAgACAAQAAAAMAAsAAgACAAQAAAAMAAoAAgACAAQAAAAMAAkAAgACAAQAAAAMAAgAAgACAAQAAAAMAAcAAgACAAQAAAAMAAYAAgACAAQAAAAMAAUAAgACAAQAAAAMAAQAAgACAAQAAAAMAAMAAgACAAQAAAAMAAIAAgACAAQAAAAMAAEAAgACAAQAAAAMAAAAAgACAAQAAAAMAP//AgACAAQAAAAMAP7/AgACAAQAAAAMAP3/AgACAAQAAAAMAPz/AgACAAQAAAAMAPv/AgACAAQAAAAMAPr/AgACAAQAAAAMAPn/AgACAAQAAAAMAPj/AgACAAQAAAAMAPf/AgACAAQAAAAMAPb/AgACAAQAAAAMAPX/AgACAAQAAAAMAPT/AgACAAQAAAAMAPP/AgACAAQAAAAMAPL/AgACAAQAAAAMAPH/AgACAAQAAAAMAPD/AgACAAQAAAAMAO//AgACAAQAAAAMAO7/AgACAAQAAAAMAO3/AgACAAMAAAALAO3/AgABAAMAAAAKAO3/AgABAAMAAAAJAO3/AgABAAMAAAAIAO3/AgABAAMAAAAHAO3/AgABAAMAAAAFAO3/AgABAAMAAAAEAO3/AgABAAMAAAADAO3/AgABAAMAAAACAO3/AgABAAMAAAABAO3/AgABAAMAAAAAAO3/AgAAAAMAAAAAAO7/AgAAAAQAAAAAAO//AgAAAAQAAAAAAPD/AgAAAAQAAAAAAPH/AgAAAAQAAAAAAPL/AgAAAAQAAAAAAPP/AgAAAAQAAAAAAPT/AgAAAAQAAAAAAPX/AgAAAAQAAAAAAPb/AgAAAAQAAAAAAPf/AgAAAAQAAAAAAPj/AgAAAAQAAAAAAPn/AgAAAAQAAAAAAPr/AgAAAAQAAAAAAPv/AgAAAAQAAAAAAPz/AgAAAAQAAAAAAP3/AgAAAAQAAAAAAP7/AgAAAAQAAAAAAP//AgAAAAQAAAAAAAAAAgAAAAQAAAAAAAEAAgAAAAQAAAAAAAIAAgAAAAQAAAAAAAMAAgAAAAQAAAAAAAQAAgAAAAQAAAAAAAUAAgAAAAQAAAAAAAYAAgAAAAQAAAAAAAcAAgAAAAQAAAAAAAgAAgAAAAQAAAAAAAkAAgAAAAQAAAAAAAoAAgAAAAQAAAAAAAsAAgAAAAQAAAAAAAwAAgAAAAQAAAAAAA0AAgAAAAQAAAABAO7/AgADAAIAAAACAO7/AgADAAIAAAADAO7/AgADAAIAAAAEAO7/AgADAAEAAAAFAO7/AgADAAEAAAAHAO7/AgADAAIAAAAIAO7/AgADAAEAAAAJAO7/AgADAAIAAAAKAO7/AgADAAIAAAALAO7/AgADAAEAAAABAAAAAgADAAIAAAACAAAAAgADAAIAAAADAAAAAgADAAIAAAAEAAAAAgADAAIAAAAIAAAAAgADAAIAAAAHAAAAAgADAAIAAAAGAAAAAgADAAIAAAAGAP//AgAAAAMAAAAHAP//AgABAAMAAAAIAP//AgABAAMAAAAJAP//AgABAAMAAAAKAP//AgABAAMAAAALAP//AgABAAMAAAAEAP//AgACAAMAAAADAP//AgABAAMAAAACAP//AgABAAMAAAABAP//AgABAAMAAAAJAAAAAgADAAIAAAAKAAAAAgADAAIAAAALAAAAAgADAAEAAAAKAAwAAgADAAIAAAAJAAwAAgADAAIAAAAIAAwAAgADAAIAAAAHAAwAAgADAAIAAAAGAAwAAgADAAIAAAAFAAwAAgADAAIAAAAEAAwAAgADAAIAAAADAAwAAgADAAIAAAACAAwAAgADAAIAAAABAAwAAgADAAIAAAAKAAsAAgACAAMAAAAJAAsAAgABAAMAAAAIAAsAAgABAAMAAAAHAAsAAgABAAMAAAAGAAsAAgABAAMAAAAFAAsAAgABAAMAAAAEAAsAAgABAAMAAAADAAsAAgABAAMAAAACAAsAAgABAAMAAAABAAsAAgABAAMAAAACAAkAAgADAAIAAAADAAkAAgADAAIAAAAEAAkAAgADAAIAAAAFAAkAAgADAAIAAAAGAAkAAgADAAIAAAAHAAkAAgADAAIAAAAIAAkAAgADAAIAAAAJAAkAAgADAAIAAAAKAAkAAgADAAIAAAALAAkAAgADAAIAAAALAAgAAgABAAMAAAAKAAgAAgABAAMAAAAJAAgAAgABAAMAAAAIAAgAAgABAAMAAAAHAAgAAgABAAMAAAAGAAgAAgABAAMAAAAFAAgAAgABAAMAAAAEAAgAAgABAAMAAAADAAgAAgABAAMAAAACAAgAAgAAAAMAAAACAAYAAgADAAIAAAADAAYAAgADAAIAAAAEAAYAAgADAAIAAAAFAAYAAgADAAIAAAAGAAYAAgADAAIAAAAHAAYAAgADAAIAAAAIAAYAAgADAAIAAAAJAAYAAgADAAIAAAAKAAYAAgADAAIAAAABAAUAAgADAAIAAAACAAQAAgACAAMAAAABAAQAAgABAAMAAAACAAUAAgABAAQAAAADAAUAAgABAAMAAAAEAAUAAgABAAMAAAAFAAUAAgABAAMAAAAGAAUAAgABAAMAAAAHAAUAAgABAAMAAAAIAAUAAgABAAMAAAAJAAUAAgABAAMAAAAKAAUAAgACAAMAAAABAPn/AgADAAIAAAACAPn/AgADAAIAAAADAPn/AgADAAIAAAAEAPn/AgADAAIAAAAFAPn/AgADAAIAAAAGAPn/AgADAAIAAAAHAPn/AgADAAIAAAAIAPn/AgADAAIAAAAJAPn/AgADAAIAAAAKAPn/AgADAAIAAAAKAPj/AgACAAMAAAAJAPj/AgACAAMAAAAIAPj/AgACAAMAAAAHAPj/AgACAAMAAAAGAPj/AgACAAMAAAAFAPj/AgACAAMAAAAEAPj/AgACAAMAAAADAPj/AgACAAMAAAACAPj/AgACAAMAAAABAPj/AgACAAMAAAAGAO3/AgABAAMAAAAGAO7/AgADAAIAAAA=")
+tile_map_data = PackedByteArray("AAAAAA4AAgAAAAUAAAABAA4AAgABAAUAAAACAA4AAgABAAUAAAADAA4AAgABAAUAAAAEAA4AAgABAAUAAAAFAA4AAgABAAUAAAAGAA4AAgABAAUAAAAHAA4AAgABAAUAAAAIAA4AAgABAAUAAAAJAA4AAgABAAUAAAAKAA4AAgABAAUAAAALAA4AAgABAAUAAAAMAA4AAgACAAUAAAAMAA0AAgACAAQAAAAMAAwAAgACAAQAAAAMAAsAAgACAAQAAAAMAAoAAgACAAQAAAAMAAkAAgACAAQAAAAMAAgAAgACAAQAAAAMAAcAAgACAAQAAAAMAAYAAgACAAQAAAAMAAUAAgACAAQAAAAMAAQAAgACAAQAAAAMAAMAAgACAAQAAAAMAAIAAgACAAQAAAAMAAEAAgACAAQAAAAMAAAAAgACAAQAAAAMAP//AgACAAQAAAAMAP7/AgACAAQAAAAMAP3/AgACAAQAAAAMAPz/AgACAAQAAAAMAPv/AgACAAQAAAAMAPr/AgACAAQAAAAMAPn/AgACAAQAAAAMAPj/AgACAAQAAAAMAPf/AgACAAQAAAAMAPb/AgACAAQAAAAMAPX/AgACAAQAAAAMAPT/AgACAAQAAAAMAPP/AgACAAQAAAAMAPL/AgACAAQAAAAMAPH/AgACAAQAAAAMAPD/AgACAAQAAAAMAO//AgACAAQAAAAMAO7/AgACAAQAAAAMAO3/AgACAAMAAAALAO3/AgABAAMAAAAKAO3/AgABAAMAAAAJAO3/AgABAAMAAAAIAO3/AgABAAMAAAAHAO3/AgABAAMAAAAFAO3/AgABAAMAAAAEAO3/AgABAAMAAAADAO3/AgABAAMAAAACAO3/AgABAAMAAAABAO3/AgABAAMAAAAAAO3/AgAAAAMAAAAAAO7/AgAAAAQAAAAAAO//AgAAAAQAAAAAAPD/AgAAAAQAAAAAAPH/AgAAAAQAAAAAAPL/AgAAAAQAAAAAAPP/AgAAAAQAAAAAAPT/AgAAAAQAAAAAAPX/AgAAAAQAAAAAAPb/AgAAAAQAAAAAAPf/AgAAAAQAAAAAAPj/AgAAAAQAAAAAAPn/AgAAAAQAAAAAAPr/AgAAAAQAAAAAAPv/AgAAAAQAAAAAAPz/AgAAAAQAAAAAAP3/AgAAAAQAAAAAAP7/AgAAAAQAAAAAAP//AgAAAAQAAAAAAAAAAgAAAAQAAAAAAAEAAgAAAAQAAAAAAAIAAgAAAAQAAAAAAAMAAgAAAAQAAAAAAAQAAgAAAAQAAAAAAAUAAgAAAAQAAAAAAAYAAgAAAAQAAAAAAAcAAgAAAAQAAAAAAAgAAgAAAAQAAAAAAAkAAgAAAAQAAAAAAAoAAgAAAAQAAAAAAAsAAgAAAAQAAAAAAAwAAgAAAAQAAAAAAA0AAgAAAAQAAAABAO7/AgADAAIAAAACAO7/AgADAAIAAAADAO7/AgADAAIAAAAEAO7/AgADAAEAAAAFAO7/AgADAAEAAAAHAO7/AgADAAIAAAAIAO7/AgADAAEAAAAJAO7/AgADAAIAAAAKAO7/AgADAAIAAAALAO7/AgADAAEAAAABAAAAAgADAAIAAAACAAAAAgADAAIAAAADAAAAAgADAAIAAAAEAAAAAgADAAIAAAAIAAAAAgADAAIAAAAHAAAAAgADAAIAAAAGAAAAAgADAAIAAAAGAP//AgAAAAMAAAAHAP//AgABAAMAAAAIAP//AgABAAMAAAAJAP//AgABAAMAAAAKAP//AgABAAMAAAALAP//AgABAAMAAAAEAP//AgACAAMAAAADAP//AgABAAMAAAACAP//AgABAAMAAAABAP//AgABAAMAAAAJAAAAAgADAAIAAAAKAAAAAgADAAIAAAALAAAAAgADAAEAAAAKAAwAAgADAAIAAAAJAAwAAgADAAIAAAAIAAwAAgADAAIAAAAHAAwAAgADAAIAAAAGAAwAAgADAAIAAAAFAAwAAgADAAIAAAAEAAwAAgADAAIAAAADAAwAAgADAAIAAAACAAwAAgADAAIAAAABAAwAAgADAAIAAAAKAAsAAgACAAMAAAAJAAsAAgABAAMAAAAIAAsAAgABAAMAAAAHAAsAAgABAAMAAAAGAAsAAgABAAMAAAAFAAsAAgABAAMAAAAEAAsAAgABAAMAAAADAAsAAgABAAMAAAACAAsAAgABAAMAAAABAAsAAgABAAMAAAACAAkAAgADAAIAAAADAAkAAgADAAIAAAAEAAkAAgADAAIAAAAFAAkAAgADAAIAAAAGAAkAAgADAAIAAAAHAAkAAgADAAIAAAAIAAkAAgADAAIAAAAJAAkAAgADAAIAAAAKAAkAAgADAAIAAAALAAkAAgADAAIAAAALAAgAAgABAAMAAAAKAAgAAgABAAMAAAAJAAgAAgABAAMAAAAIAAgAAgABAAMAAAAHAAgAAgABAAMAAAAGAAgAAgABAAMAAAAFAAgAAgABAAMAAAAEAAgAAgABAAMAAAADAAgAAgABAAMAAAACAAgAAgAAAAMAAAACAAYAAgADAAIAAAADAAYAAgADAAIAAAAEAAYAAgADAAIAAAAFAAYAAgADAAIAAAAGAAYAAgADAAIAAAAHAAYAAgADAAIAAAAIAAYAAgADAAIAAAAJAAYAAgADAAIAAAAKAAYAAgADAAIAAAABAAUAAgADAAIAAAACAAQAAgACAAMAAAABAAQAAgABAAMAAAACAAUAAgABAAQAAAADAAUAAgABAAMAAAAEAAUAAgABAAMAAAAFAAUAAgABAAMAAAAGAAUAAgABAAMAAAAHAAUAAgABAAMAAAAIAAUAAgABAAMAAAAJAAUAAgABAAMAAAAKAAUAAgACAAMAAAABAPn/AgADAAIAAAACAPn/AgADAAIAAAADAPn/AgADAAIAAAAEAPn/AgADAAIAAAAFAPn/AgADAAIAAAAGAPn/AgADAAIAAAAHAPn/AgADAAIAAAAIAPn/AgADAAIAAAAJAPn/AgADAAIAAAAKAPn/AgADAAIAAAAKAPj/AgACAAQAAAAJAPj/AgABAAQAAAAIAPj/AgABAAQAAAAHAPj/AgABAAQAAAAGAPj/AgABAAQAAAAFAPj/AgABAAQAAAAEAPj/AgABAAQAAAADAPj/AgABAAQAAAACAPj/AgABAAQAAAABAPj/AgABAAQAAAAGAO3/AgABAAMAAAAGAO7/AgADAAIAAAABAPX/AgABAAMAAAACAPX/AgABAAMAAAADAPX/AgABAAMAAAAEAPX/AgABAAMAAAAFAPX/AgABAAMAAAAGAPX/AgABAAMAAAAHAPX/AgABAAMAAAAIAPX/AgABAAMAAAAJAPX/AgABAAMAAAAKAPX/AgACAAMAAAAKAPb/AgACAAQAAAAKAPf/AgACAAQAAAAJAPb/AgABAAQAAAAJAPf/AgABAAQAAAAIAPb/AgABAAQAAAAIAPf/AgABAAQAAAAHAPb/AgABAAQAAAAHAPf/AgABAAQAAAAGAPb/AgABAAQAAAAGAPf/AgABAAQAAAAFAPf/AgABAAQAAAAFAPb/AgABAAQAAAAEAPb/AgABAAQAAAAEAPf/AgABAAQAAAADAPf/AgABAAQAAAADAPb/AgABAAQAAAACAPb/AgABAAQAAAACAPf/AgABAAQAAAABAPf/AgABAAQAAAABAPb/AgABAAQAAAA=")
 tile_set = ExtResource("3_w47dg")
 
-[node name="Objects" type="Node2D" parent="."]
+[node name="Objects" type="Node2D" parent="." groups=["foreground_layer"]]
 
 [node name="ItemDrawerObject" parent="Objects" instance=ExtResource("10_flr1q")]
 position = Vector2(25, -99)
@@ -103,5 +105,211 @@ position = Vector2(88, 215)
 position = Vector2(95, 0)
 mob_scene = ExtResource("13_1q04b")
 
-[node name="BossEnemy" parent="." instance=ExtResource("14_p6b73")]
-position = Vector2(102, -238)
+[node name="SpawnerTrap4" parent="Objects" node_paths=PackedStringArray("spawners_connected") instance=ExtResource("4_j7bqc")]
+position = Vector2(182, -184)
+spawners_connected = [NodePath("../../BossEnemy")]
+
+[node name="FloorTrapObject" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(23, -263)
+
+[node name="FloorTrapObject2" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(23, -216)
+
+[node name="FloorTrapObject3" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(36, -216)
+
+[node name="FloorTrapObject4" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(49, -216)
+
+[node name="FloorTrapObject5" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(62, -216)
+
+[node name="FloorTrapObject6" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(75, -216)
+
+[node name="FloorTrapObject7" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(88, -216)
+
+[node name="FloorTrapObject8" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(101, -216)
+
+[node name="FloorTrapObject9" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(114, -216)
+
+[node name="FloorTrapObject10" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(127, -216)
+
+[node name="FloorTrapObject11" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(140, -216)
+
+[node name="FloorTrapObject12" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(154, -216)
+
+[node name="FloorTrapObject13" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(167, -216)
+
+[node name="FloorTrapObject14" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(180, -216)
+
+[node name="FloorTrapObject15" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(185, -232)
+
+[node name="FloorTrapObject16" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(171, -232)
+
+[node name="FloorTrapObject17" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(157, -232)
+
+[node name="FloorTrapObject18" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(144, -232)
+
+[node name="FloorTrapObject19" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(134, -232)
+
+[node name="FloorTrapObject20" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(120, -232)
+
+[node name="FloorTrapObject21" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(107, -232)
+
+[node name="FloorTrapObject22" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(94, -232)
+
+[node name="FloorTrapObject23" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(81, -232)
+
+[node name="FloorTrapObject24" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(68, -232)
+
+[node name="FloorTrapObject25" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(55, -232)
+
+[node name="FloorTrapObject26" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(42, -232)
+
+[node name="FloorTrapObject27" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(29, -232)
+
+[node name="FloorTrapObject28" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(23, -248)
+
+[node name="FloorTrapObject29" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(37, -248)
+
+[node name="FloorTrapObject30" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(52, -248)
+
+[node name="FloorTrapObject31" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(67, -248)
+
+[node name="FloorTrapObject32" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(82, -248)
+
+[node name="FloorTrapObject33" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(96, -248)
+
+[node name="FloorTrapObject34" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(110, -248)
+
+[node name="FloorTrapObject35" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(124, -248)
+
+[node name="FloorTrapObject36" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(138, -248)
+
+[node name="FloorTrapObject37" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(154, -249)
+
+[node name="FloorTrapObject38" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(168, -249)
+
+[node name="FloorTrapObject39" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(182, -249)
+
+[node name="FloorTrapObject40" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(179, -264)
+
+[node name="FloorTrapObject41" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(163, -264)
+
+[node name="FloorTrapObject42" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(144, -264)
+
+[node name="FloorTrapObject43" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(127, -264)
+
+[node name="FloorTrapObject44" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(109, -264)
+
+[node name="FloorTrapObject45" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(93, -264)
+
+[node name="FloorTrapObject46" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(78, -264)
+
+[node name="FloorTrapObject47" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(64, -264)
+
+[node name="FloorTrapObject48" parent="Objects" instance=ExtResource("17_hpxn5")]
+visible = false
+position = Vector2(47, -264)
+
+[node name="BossEnemy" parent="." node_paths=PackedStringArray("left_position", "right_position", "camera") instance=ExtResource("14_p6b73")]
+position = Vector2(98, -238)
+left_position = NodePath("../BossLeftPosition")
+right_position = NodePath("../BossRightPosition")
+camera = NodePath("../GameCamera")
+arm_launch_scene = ExtResource("15_qoki2")
+
+[node name="BossLeftPosition" type="Node2D" parent="."]
+position = Vector2(-12, -235)
+
+[node name="BossRightPosition" type="Node2D" parent="."]
+position = Vector2(224, -236)
